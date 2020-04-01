@@ -1,0 +1,144 @@
+<%- include('partials/header.ejs'); -%>
+
+<!--sliders-->
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <i class="fas fa-circle active test" data-target="#carouselExampleIndicators" data-slide-to="0"></i>
+    <i class="fas fa-circle test" data-target="#carouselExampleIndicators" data-slide-to="1"></i>
+    <i class="fas fa-circle test" data-target="#carouselExampleIndicators" data-slide-to="2"></i>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <a href="#">
+        <img class="d-block w-100 h-55" src="images\Capture2.jpg" alt="First slide" href="#">
+      </a>
+    </div>
+    <div class="carousel-item">
+      <a href="#">
+        <img class="d-block w-100 h-55" src="images\Capture3.jpg" alt="Second slide" href="#">
+      </a>
+    </div>
+    <div class="carousel-item">
+      <a href="#">
+        <img class="d-block w-100 h-55" src="images\Capture11.jpg" alt="Third slide" href="#">
+      </a>
+    </div>
+  </div>
+  <a class="carousel-control-prev justify-content-start test1" href="#carouselExampleIndicators" role="button"
+    data-slide="prev">
+    <div class="slider-icon">
+      <i class="fas fa-chevron-left"></i>
+    </div>
+  </a>
+  <a class="carousel-control-next justify-content-end test1" href="#carouselExampleIndicators" role="button"
+    data-slide="next">
+    <div class="slider-icon">
+      <i class="fas fa-chevron-right"></i>
+    </div>
+  </a>
+</div>
+
+<!--body get started-->
+
+  <div class="container-fluid">
+    <div class="container" id="Contype">
+      <h2 id="Gstart">Get started</h2>
+      <span id="HomeSpan"><label for="home">Home</label>
+        <input type="radio" id="home" name="Ctype" value="HOME"></span>
+      <label for="bussiness">Bussiness</label>
+      <input type="radio" id="bussiness" name="Ctype" value="BUSSINESS">
+      <input type="text" placeholder="Enter the location"><button id="Ctypebtn" type="button"
+        class="btn btn-outline-danger">Search</button>
+    </div>
+  </div>
+  
+  <div class="container">
+  <!--body broadband plans-->
+  <div class="container">
+    <h3 class="Bband">Broadband Plans</h3>
+  </div>
+  <!--plans-->
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-4">
+        <div class="card text-center">
+          <div class="card body">
+            <h4 class="py-3 px-3 text-center">ACT BIGA</h4>
+            <p><i class="fas fa-bolt icon"></i>1 Gbps Speed</p>
+            <p><i class="fas fa-wifi icon"></i>3500 GB Data</p>
+            <p><i class="fas fa-tachometer-alt icon"></i>5 Mbps Post FUP</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-xl-4">
+        <div class="card text-center">
+          <div class="card body">
+            <h4 class="py-3 px-3 text-center">ACT INACTABLE</h4>
+            <p><i class="fas fa-bolt icon"></i>250 Mbps Speed</p>
+            <p><i class="fas fa-wifi icon"></i>1000 GB Data</p>
+            <p><i class="fas fa-tachometer-alt icon"></i>1 Mbps Post FUP</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-xl-4">
+        <div class="card text-center">
+          <div class="card body">
+            <h4 class="py-3 px-3 text-center">ACT BREEZEE</h4>
+            <p><i class="fas fa-bolt icon"></i>150 Mbps Speed</p>
+            <p><i class="fas fa-wifi icon"></i>650 GB Data</p>
+            <p><i class="fas fa-tachometer-alt icon"></i>1 Mbps Post FUP</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="text-center plansBtn">
+    <a href="/plans"  class="btn btn-danger">View All Plans</a>
+  </div>
+  <h2 class="text-center Bband mt-5">Routers</h2>
+
+    <div class="row routers ml-2">
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT7ZAmUcKo6W4xTIHYVzvRCEGOg9M2CqGcKh0ZG8ro1iVySGM4J" class="card-img-top" alt="...">
+          <div class="card-header text-center">
+            <h4>T1 Router</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4"> 
+        <div class="card" style="width: 18rem;">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT7ZAmUcKo6W4xTIHYVzvRCEGOg9M2CqGcKh0ZG8ro1iVySGM4J"
+            class="card-img-top" alt="...">
+          <div class="card-header text-center">
+            <h4>T1 Router</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT7ZAmUcKo6W4xTIHYVzvRCEGOg9M2CqGcKh0ZG8ro1iVySGM4J"
+            class="card-img-top" alt="...">
+          <div class="card-header text-center">
+            <h4>T1 Router</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+            <div class="text-center mt-3"><a href="/routers" class="btn btn-danger">View all routers</a></div>
+</div>
+
+
+
+
+
+<%- include('partials/footer.ejs'); -%>
+

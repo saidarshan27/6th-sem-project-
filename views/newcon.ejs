@@ -1,0 +1,45 @@
+<%- include("partials/header.ejs"); %>
+
+<h4 class="text-center plansH">New connection</h4>
+<hr id="hr">
+
+<div class="container newconcontainer">
+    <form action="/admin/request/new-connection" method="POST" class="text-center" style="width:50rem;height:70vh" > 
+        <div class="form-group">
+            <input  class="form-control" type="text" name="newcon[name]" placeholder="Enter your name" id="newconname">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="newcon[phone]" placeholder="Enter your phone number" id="newconphone">
+        </div>
+        <div class="form-group ml-3">
+            <select class="form-control" name="newcon[plan]" style="color: #6c757d;" id="newconplan">
+                <option>Pick a plan</option>
+                <option>ACT Swift</option>
+                <option>ACT Rapid Plus</option>
+                <option>ACT Storm</option>
+                <option>ACT Lighting</option>
+              </select>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="newcon[address]" placeholder="Address lane" id="newconaddress">
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="text" name="newcon[locality]" placeholder="Locality" id="newconlocality">
+      </div>
+        <div>
+            <input class="form-control" type="text" name="newcon[email]" placeholder="Enter your e-mail id" id="newconemail">
+        </div> 
+        <a id="newconbtn" class="btn btn-outline-danger">Submit</a>
+      </form>
+</div>
+</div>
+</form>
+
+<script>
+  function activatePlacesSearch(){
+    var input=document.getElementById("newconlocality");
+    var autocomplete=new google.maps.places.Autocomplete(input);
+  }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD27OCfERJWk0dd1ziqQ05mu0eHdvuickI&libraries=places&callback=activatePlacesSearch"></script>
+<%- include("partials/footer.ejs"); %>

@@ -1,0 +1,19 @@
+<%- include("../partials/header.ejs") %>
+
+<h4 class="text-center plansH">New Connection requests</h4>
+<hr id="hr">
+<div class="newconreqcontainer">
+    <% newcons.forEach(function(newcon){ %>
+        <div class="card newconcard">
+        <div class="card-title">
+         <h3>New connection request</h3>
+        </div>
+        <div class="card-footer newconfooter">
+            <p class="mb-3">By - <%=newcon.name %> <span class="ml-3"> Phone - <%= newcon.phone %></span></p>
+            <span class="viewbtn"><a class="btn btn-outline-danger " href="/admin/request/new-connection/<%= newcon._id %>">View</a></span>
+        </div>
+        </div>
+   <% }) %>
+</div>
+
+<%- include("../partials/footer.ejs"); %>

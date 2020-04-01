@@ -1,0 +1,50 @@
+<%- include("../partials/header.ejs"); %>
+
+
+<div class="routershow"> 
+            <div class="routername">
+                <h4 id="routername1"><%= router.name %></h4>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, pariatur!</p>
+                <div class="routerfeatures">
+                    <h3 class="mt-5 mb-4">Features</h3>
+                    <ul class="routerlist">
+                        <li>Fast Speed—Simultaneous 2.4GHz 300 Mbps and 5GHz 867 Mbps connections for 1200 Mbps of total available bandwidth </li>
+                        <li>Stable Connections—4 external antennas and one internal antenna provide stable wireless connections and optimal coverage </li>
+                        <li>Wider Coverage—Beamforming technology delivers wider wireless coverage</li>
+                        <li>Smoother Network—MU-MIMO achieves 2X efficiency by communicating with up to 2 devices at once </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="routershwimg">
+                <img src="<%= router.image %>" class="Rimage">
+            </div>
+            <button id="routerpricebutton" class="btn btn-outline-danger btn-lg routerbuynw" data-toggle="modal" data-target="#exampleModal">Buy Now for <span id="routerprice"><%= router.price %></span></button>
+              
+            
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Router Request</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           Request for new router received
+        </div>
+        <div class="modal-footer">
+            <input type="submit" class="btn btn-outline-danger" data-dismiss="modal" value="OK">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<%- include("../partials/footer.ejs"); %>

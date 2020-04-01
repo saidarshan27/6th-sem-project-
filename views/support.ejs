@@ -1,0 +1,54 @@
+<%- include("partials/header.ejs"); %>
+
+<h4 class="plansH text-center">
+    Support
+</h4>
+<hr id="hr"> 
+<div class="supportcontainer">
+    <form action="/admin/support" method="POST" class="text-center" style="width:50rem;height:70vh" > 
+        <div class="form-group ml-3">
+            <select class="form-control"  style="color: #6c757d;" id="supporttype">
+                <option>Select a issue</option>
+                <option>Internet not working</option>
+                <option>Download and Upload speed low</option>
+                <option>Router configuration</option>
+              </select>
+        </div>
+        <div>
+            <textarea class="form-control ml-3"  placeholder="Any Other issue.Please tell us more" id="supporttxtA"></textarea>
+        </div>
+        <div>
+            <a href=" " class="btn btn-outline-danger mt-3" id="supportbtn" data-toggle="modal" data-target="#exampleModal">Submit</a>
+        </div>
+        </form>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">New Connection</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                   New support ticket has been raised,our team will get in contact with you.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <input type="submit" class="btn btn-outline-danger" data-dismiss="modal" value="OK">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+</div>
+<div class="svg">
+    <%- include("partials/supportsvg1.ejs"); %>
+    <%- include("partials/supportsvg2.ejs"); %>
+</div>
+
+
+
+
+<%- include("partials/footer.ejs"); %>
