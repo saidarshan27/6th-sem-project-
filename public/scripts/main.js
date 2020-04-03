@@ -1,11 +1,12 @@
 
 
-
 // const test=document.querySelector("#test");
 // const threemonth=document.getElementById("threemonth");
 // const sixmonth=document.getElementById("sixmonth");
 // const onemonth=document.getElementById("onemonth");
 
+moment.tz.setDefault("Asia/Kolkata");
+var isInside=true;
 
 
 
@@ -57,7 +58,6 @@ $("#supportbtn").on("click",function(){
 })
 
 $("#newconbtn").click(function(){
-  alert("clicked");
   const name=$("#newconname").val();
   const phone=$("#newconphone").val();
   const plan=$("#newconplan").val();
@@ -71,6 +71,43 @@ $("#newconbtn").click(function(){
     url:"/admin/request/new-connection",
     data:data
   })
+})
+
+$("#Viewticketsbtn").on("click",function(){
+  $(this).addClass("active");
+  $(this).siblings(".active").removeClass("active");
+  $(".supportform").hide("slow");
+  if(isInside==true){
+    $.get("/support",function(data){
+      data.forEach(function(ticket){
+        const time=moment.tz(ticket.date,"Asia/Kolkata");
+        const difftime=moment(time).fromNow();
+          $(".ticketcontainer").append(
+            `
+            <div class="card ticketcard">
+            <div class="card-header ticketheader">
+             <h5>${ticket.type}</h5>
+            </div>
+            <div class="card-footer ticketfooter">
+                <p class="mb-3">${ticket.status}<span class="ml-3"><i class="fas fa-clock mr-1"></i> ${difftime}<span></p>
+            </div>
+            </div>
+            `
+          )
+      })
+      })
+      isInside=false;
+      console.log(isInside);
+  }
+  })
+
+$("#Raiseticketbtn").on("click",function(){
+  isInside=true;
+  console.log(isInside);
+  $(this).addClass("active");
+  $(this).siblings(".active").removeClass("active");
+  $(".ticketcard").hide("slow");
+  $(".supportform").show("slow");
 })
 
 

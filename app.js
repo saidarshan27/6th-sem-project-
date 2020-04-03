@@ -10,6 +10,8 @@ const NewCon=require("./models/newconreq");
 const NewRouter=require("./models/Nroutereq");
 const Support=require("./models/newsupport");
 const NodeGeocoder = require('node-geocoder');
+const moment       = require("moment-timezone");
+
  
 var options = {
   provider: 'google',
@@ -23,6 +25,8 @@ var geocoder = NodeGeocoder(options);
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + "/public"));
+app.locals.moment=moment;
+moment.tz.setDefault("Asia/Kolkata");
 
 
 mongoose
@@ -217,9 +221,14 @@ app.post("/admin/request/new-router",function(req,res){
 
 //posting support to admin
 app.post("/admin/support",function(req,res){
+	const date=moment().format();
+	req.body.date=date;
+	req.body.status="Pending";
 	const data={
 		type:req.body.type,
-		comment:req.body.comment
+		comment:req.body.comment,
+		date:req.body.date,
+		status:req.body.status
 	}
 	Support.create(data,function(err,newsupport){
 		if(err){
@@ -263,9 +272,20 @@ geocoder.geocode(geoadress,function(err,data){
 //============================
 //SUPPORT routes
 //============================
+app.get("/support",function(req,res){
+	Support.find({},function(err,allsupport){
+		if(err){
+			console.log(err);
+		}else{
+			res.json(allsupport);
+		}
+	})
+})
+
 app.get("/support/new",function(req,res){
 	res.render("support");
 })
+
 
 app.listen(process.env.PORT || 3000, process.env.IP, function() {
 	console.log('Project Started');
