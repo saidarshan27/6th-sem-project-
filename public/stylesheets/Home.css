@@ -89,7 +89,7 @@ h1 {
 	font-size: 1.35rem;
 }
 .newconcard{
-	width: 80em;
+	width: 40em;
 	height: 8em;
 	margin-bottom: 30px;
 	border-left:5px solid #ea1c2c ;
@@ -225,10 +225,49 @@ hr {
 .ticketcard{
 	margin-bottom: 30px;
 }
-
+.adminsupporticket {
+	border-left: 3px solid #ea1c2c;
+	margin-bottom: 30px;
+	width: 40em;
+}
+.ticketcontainer1{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 45px;
+}
+.adminsupporticket .card-footer p{
+	font-size: .8rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 21em;
+}
+.status{
+	font-size:.9rem;
+	font-family: 'Baloo 2', cursive;
+	font-weight: 700;
+	color: #eb9b34;
+}
+.createduser{
+	font-size:.9rem;
+	font-family: 'Baloo 2', cursive;
+	font-weight: 700;
+}
+.showticketcontainer{
+	margin-top:50px;
+	padding-top: 50px;
+}
+.adminsupporticket .card-footer{
+	display: flex;
+	justify-content: space-between;
+}
 .newconcontainer input[type="text"]:focus{
 	border-color: rgb(255, 0, 0);
 	box-shadow: 0 0 0 .2rem rgba(255, 1, 1, 0.185);
+}
+.realticket{
+	margin-left: 9em;
 }
 
 .form-control{
@@ -258,6 +297,12 @@ hr {
 
 #mainNavbar .nav-link:hover {
 	color: #ea1c2c;
+}
+#mainNavbar{
+	background-color: white;
+}
+#mainNavbar{
+	margin-bottom: 40px;
 }
 .dropdown-item:hover {
 	color: #ea1c2c;
@@ -300,10 +345,28 @@ i.test.active {
 	width: 80px;
 }
 
-.container-fluid {
+.getstarted {
 	background-color: #ea1c2c;
 	height: 200px;
 	color: white;
+}
+.sidebar{
+	width: 300px;
+	padding:50px 20px;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	border-right: 1px solid #6c757d33;
+}
+.sidebar .nav-link{
+	margin-left: 10px;
+	margin-bottom: 35px;
+	color:#6c757d;
+
+}
+.sidebar .nav-link:hover{
+	color:#ea1c2c;
 }
 
 #Gstart {

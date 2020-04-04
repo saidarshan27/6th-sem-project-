@@ -1,0 +1,34 @@
+<%- include("../partials/adminheader.ejs") %>
+
+<h4 class="text-center plansH">Support tickets</h4>
+<hr id="hr">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group mt-5">
+                <li class="list-group-item" id="pending">
+                    Pending
+                </li>
+                <li class="list-group-item" id="solved">
+                    Solved
+                </li>
+            </div>
+        </div>
+        <div class="col-md-9 ticketcontainer1">
+        <% allsupport.forEach(function(ticket){ %>
+                <div class="card adminsupporticket">
+                    <div class="card-header">
+                        <h5><%= ticket.type %></h5>
+                    </div>
+                    <div class="card-footer">
+                      <p><span class="createduser">By - </span><span class="status"><%= ticket.status %></span></p>
+                      <span><a class="btn btn-outline-danger btn-sm" href="/admin/support/<%= ticket.id %>">View</a></span>
+                    </div>
+                </div>
+       <% }) %>
+    </div>
+    </div>
+</div>
+
+<%- include("../partials/footer.ejs"); %>

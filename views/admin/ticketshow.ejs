@@ -1,0 +1,62 @@
+<%- include("../partials/adminheader.ejs") %>
+
+
+
+<!-- <nav class="sidebar">
+   <ul class="navlinks">
+       <li class="nav-item">
+        <a class="nav-link" href=""><i class="fas fa-chart-line mr-3"></i>Dashboard</a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href=""><i class="fas fa-clipboard mr-3"></i>Support tickets</a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href=""><i class="fas fa-wifi mr-3"></i>Connection requests</a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href=""><i class="fas fa-users mr-3"></i>Customers</a>
+       </li>
+   </ul>
+</nav> -->
+<h4 class="text-center plansH">Support ticket</h4>
+<hr id="hr">
+
+<div class="container showticketcontainer">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group mt-5">
+                <li class="list-group-item active">
+                    Ticket
+                </li>
+                <li class="list-group-item">
+                    Personal Info
+                </li>
+            </div>
+        </div>
+        <div class="col-md-6 realticket">
+            <div>
+                <label>Type</label>
+            </div>
+            <div>
+                <label class="form-control"><%= ticket.type %></label>
+            </div>
+            <div>
+                <label>Comments</label>
+            </div>
+            <div>
+                <label class="form-control"><%= ticket.comment %></label>
+            </div>
+            <div>
+                <label>Created On</label>
+            </div>
+            <div>
+                <label class="form-control"><%= moment(ticket.date).format("DD.MM.YYYY HH:mm") %></label>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-sm btn-outline-success"><i class="fas fa-check"></i> Solved</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer.ejs"); %>

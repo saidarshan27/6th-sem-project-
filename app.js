@@ -203,6 +203,30 @@ app.get("/admin/request/new-connection",function(req,res){
 	})
 })
 
+
+app.get("/admin/request/new-router",function(req,res){
+	res.send("Routers admin");
+})
+
+//index for support tickets (admin)
+app.get("/admin/support",function(req,res){
+	Support.find({},function(err,allsupport){
+		if(err){
+			console.log(err);
+		}else{
+			res.render("admin/adminsupport",{allsupport:allsupport});
+		}
+	})
+})
+app.get("/admin/support/:id",function(req,res){
+	Support.findById(req.params.id,function(err,ticket){
+		if(err){
+			console.log(err);
+		}else{
+			res.render("admin/ticketshow",{ticket:ticket});
+		}
+	})
+})
 //posting route req to admin
 app.post("/admin/request/new-router",function(req,res){
 	const data={
@@ -214,27 +238,6 @@ app.post("/admin/request/new-router",function(req,res){
 			console.log(err);
 		}else{
 			console.log(newrouter);
-			res.redirect("/home");
-		}
-	})
-})
-
-//posting support to admin
-app.post("/admin/support",function(req,res){
-	const date=moment().format();
-	req.body.date=date;
-	req.body.status="Pending";
-	const data={
-		type:req.body.type,
-		comment:req.body.comment,
-		date:req.body.date,
-		status:req.body.status
-	}
-	Support.create(data,function(err,newsupport){
-		if(err){
-			console.log(err);
-		}else{
-			console.log(newsupport);
 			res.redirect("/home");
 		}
 	})

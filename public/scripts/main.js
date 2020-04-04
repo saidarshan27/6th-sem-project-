@@ -110,6 +110,11 @@ $("#Raiseticketbtn").on("click",function(){
   $(".supportform").show("slow");
 })
 
+$("#pending").on("click",function(){
+   $(this).addClass("active");
+  });
+
+
 
 // threemonth.addEventListener("click",function(){
 //   buy3.classList.remove("displaymonth");
