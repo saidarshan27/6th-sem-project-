@@ -227,27 +227,35 @@ hr {
 }
 .adminsupporticket {
 	border-left: 3px solid #ea1c2c;
-	margin-bottom: 30px;
-	width: 40em;
+	margin-bottom: 30px; 
 }
 .ticketcontainer1{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 	padding-top: 45px;
 }
 .adminsupporticket .card-footer p{
 	font-size: .8rem;
 	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	width: 21em;
+	 flex-direction: row; 
+     justify-content: space-between; 
+	 width: 21em;
 }
 .status{
 	font-size:.9rem;
 	font-family: 'Baloo 2', cursive;
 	font-weight: 700;
-	color: #eb9b34;
+}
+.colorP{
+	color: #ff2323;
+}
+.colorS{
+	color: rgb(0, 170, 37);
+}
+#svg2{
+	display: flex;
+	justify-content: flex-end;
+}
+.svgimg{
+	margin-right: 10%;
 }
 .createduser{
 	font-size:.9rem;
@@ -353,7 +361,7 @@ i.test.active {
 .sidebar{
 	width: 300px;
 	padding:50px 20px;
-	position: absolute;
+	position:fixed ;
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
