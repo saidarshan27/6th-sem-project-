@@ -6,6 +6,9 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/Home.css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet"> 
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet"> 
+  <script defer src="/scripts/lib/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+  <script defer src="/stylesheets/lib/bootstrap-4.4.1-dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  <script defer type="text/javascript" src="/scripts/main.js"></script>
 </head>
 
 <body>
@@ -20,19 +23,28 @@
     </div>
   </nav>
 
-  <nav class="sidebar">
-    <ul class="navlinks">
-        <li class="nav-item">
-         <a class="nav-link" href="/admin"><i class="fas fa-chart-line mr-3"></i>Dashboard</a>
-        </li>
-        <li class="nav-item">
-         <a class="nav-link" href="/admin/support"><i class="fas fa-clipboard mr-3"></i>Support tickets</a>
-        </li>
-        <li class="nav-item">
-         <a class="nav-link" href="/admin/request/new-connection"><i class="fas fa-wifi mr-3"></i>Connection requests</a>
-        </li>
-        <li class="nav-item">
-         <a class="nav-link" href=""><i class="fas fa-users mr-3"></i>Customers</a>
-        </li>
-    </ul>
- </nav>
+
+<div>
+  <div class="row">
+     <div class="col-md-3">
+      <nav class="sidebar">
+        <ul class="navlinks">
+            <li class="nav-item">
+             <a class="nav-link" href="/admin"><i class="fas fa-chart-line mr-3"></i>Dashboard</a>
+            </li>
+            <li class="nav-item">
+             <a class="nav-link" href="/admin/support"><i class="fas fa-clipboard mr-3"></i>Support tickets</a>
+            </li>
+            <li class="nav-item">
+             <a class="nav-link" href="/admin/request/new-connection"><i class="fas fa-wifi mr-3"></i>Connection requests</a>
+            </li>
+            <li class="nav-item">
+             <a class="nav-link" href=""><i class="fas fa-users mr-3"></i>Customers</a>
+            </li>
+        </ul>
+     </nav>
+     </div>
+  </div>
+</div>
+
+ 
