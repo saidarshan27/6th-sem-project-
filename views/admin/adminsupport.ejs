@@ -7,9 +7,8 @@
     <div class="row">
         <div class="col-md-3">
             <div class="list-group mt-5">
-                <li class="list-group-item" id="pending">
-                    Pending
-                </li>
+                <li class="list-group-item active" id="all">All</li>
+                <li class="list-group-item" id="pending">Pending</li>
                 <li class="list-group-item" id="solved">
                     Solved
                 </li>
@@ -17,7 +16,7 @@
         </div>
         <div class="col-md-9 ticketcontainer1">
         <% allsupport.forEach(function(ticket){ %>
-                <div class="card adminsupporticket">
+                <div class="card adminsupporticket ml-md-5">
                     <div class="card-header">
                         <h5><%= ticket.type %></h5>
                     </div>
