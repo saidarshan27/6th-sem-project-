@@ -1,21 +1,18 @@
-
-
-// const test=document.querySelector("#test");
-// const threemonth=document.getElementById("threemonth");
-// const sixmonth=document.getElementById("sixmonth");
-// const onemonth=document.getElementById("onemonth");
-
 moment.tz.setDefault("Asia/Kolkata");
 var isInside=true;
+const tickets=$(".adminsupporticket");
 
-
-
-// const buy1=document.getElementById("buy1");
-// const buy3=document.getElementById("buy3");
-// const buy6=document.getElementById("buy6");
-
-
-
+$(function(){
+  $(".adminsupporticket" ).each(function( index ) {
+    if($( this ).find(".status").text()=="Pending"){
+      $( this ).addClass("pending");
+      $( this ).find(".status").addClass("colorP");
+    }else{
+      $( this ).addClass("solved");
+      $( this ).find(".status").addClass("colorS");
+    }
+  });
+})
 
 $("#threemonth").on("click",function(){
   $("#buy3").removeClass("displaymonth");
@@ -110,32 +107,26 @@ $("#Raiseticketbtn").on("click",function(){
   $(".supportform").show("slow");
 })
 
+
 $("#pending").on("click",function(){
-   $(this).addClass("active");
-  });
+  $("#all").removeClass("active");
+  $("#solved").removeClass("active");
+  $(this).addClass("active");
+  tickets.filter(".pending").show();
+  tickets.not(".pending").hide();
+})
 
+$("#solved").on("click",function(){
+  $("#pending").removeClass("active");
+  $("#all").removeClass("active");
+  $(this).addClass("active");
+  tickets.not(".pending").show();
+  tickets.filter(".pending").hide();
+})
 
-
-// threemonth.addEventListener("click",function(){
-//   buy3.classList.remove("displaymonth");
-//   buy1.classList.add("displaymonth");
-//   buy6.classList.add("displaymonth");
-// })
-
-// sixmonth.addEventListener("click",function(){
-//   buy6.classList.remove("displaymonth");
-//   buy3.classList.add("displaymonth");
-//   buy1.classList.add("displaymonth");
-// })
-
-// onemonth.addEventListener("click",function(){
-//   buy1.classList.remove("displaymonth");
-//   buy6.classList.add("displaymonth");
-//   buy3.classList.add("displaymonth");
-// })
-
-
-// test.addEventListener("click",function(){
-//   alert("you have clicked");
-// })
-
+$("#all").on("click",function(){
+   $("#pending").removeClass("active");
+   $("#solved").removeClass("active");
+   $("#all").addClass("active");
+  tickets.show();
+})
