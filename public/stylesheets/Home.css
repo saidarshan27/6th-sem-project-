@@ -153,11 +153,43 @@ a:hover {
 	font-size: large;
 }
 
-hr {
+#hr {
 	margin: 0 auto;
 	width: 20%;
 	height: 1;
 	background: #ea1c2c;
+}
+#hr1 {
+	margin-left: 21em;
+	width: 20%;
+	height: 1;
+	background: #ea1c2c;
+}
+.plansD{
+	color: #ea1c2c;
+	margin-left: 15em;
+}
+.dashcard{
+	margin-top: 40px;
+	height: 20em;
+}
+.dashcard .card-body h4{
+	font-size: 3rem;
+}
+.dashcontainer{
+	margin-left: 25em;
+	max-width: 100em;
+}
+.stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+    content: "";
+    background-color: rgba(0,0,0,0);
 }
 .svg{
 	margin-left: 4rem;
@@ -172,7 +204,45 @@ hr {
 }
 .card{
 	filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.521));
+	background-color: white;
 }
+.card-header{
+	background-color: white;
+}
+.card-footer{
+	background-color: white;
+}
+.filterdiv{
+	display:flex;
+	flex-direction: row-reverse;
+	width: 115%;
+	position: absolute;
+}
+.filterdiv .btn-danger{
+	padding:5px 15px;
+	height: 30px;
+    margin-right: 20px;
+}
+.statuscard{
+	display: none;
+	margin-left: 45.5em;
+	position: absolute;
+	margin-top: 50px;
+}
+.statuscard .card-title{
+	padding: 10px 10px;
+	text-align: center;
+	margin-bottom: 0;
+}
+.statuscard select{
+  border: none;
+  font-size: .9rem;
+  height: 20px;
+}
+#statusselect{
+	height: 20px;
+}
+
 .newconcontainer{
 	padding: 50px 30px;
 	height: 80vh;
@@ -188,7 +258,7 @@ hr {
 .supportcontainer{
 	margin-bottom: 0;
 	padding: 50px 30px;
-	height: 80vh;
+	max-width: 92vw;
 	height: 26em;
 }
 #supporttxtA{
@@ -207,22 +277,54 @@ hr {
 	height: 50px;
 }
 .ticketheader{
+	display: flex;
+	justify-content: space-between;
 	border-bottom: none;
 }
+.optionsbtn{
+	cursor: pointer;
+	color:#6c757d;
+}
+.deletediv{
+	position: absolute;
+    margin-left: 43em;
+}
+.deletelbl{
+	border: 1px solid #6c757d73;
+	border-radius: 7%;
+	padding: 5px 10px;
+	background-color: white;
+	cursor: pointer;
+	display: none;
+	width: 13%;
+	margin-left:15px ;
+	position: absolute;
+}
+.userticketfilter{
+	display: none;
+}
+.deletelbl:hover{
+	background-color: red;
+	color: white;
+}
+
 .ticketfooter{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	font-size: .8rem;
 	border-top: 0;
 }
-.ticketfooter span{
-	font-size: .8rem;
+.ticketfooter .time {
 	color:#707070;
 }
 .ticketfooter p{
    font-size:.9rem;
    font-family: 'Baloo 2', cursive;
    font-weight: 700;
-   color: #eb9b34;
 }
 .ticketcard{
+	border-left: 3px solid red;
 	margin-bottom: 30px;
 }
 .adminsupporticket {
@@ -277,6 +379,12 @@ hr {
 .realticket{
 	margin-left: 9em;
 }
+.userviewticket input{
+	margin-bottom: 20px;
+}
+.gobackbtn{
+	cursor: pointer;
+}
 
 .form-control{
 	box-shadow: none;
@@ -298,10 +406,10 @@ hr {
 
 .plansBtn {
 	margin: 20px 20px;
-}
+} 
 .table td {
 	padding: 1.75rem;
-}
+} 
 
 #mainNavbar .nav-link:hover {
 	color: #ea1c2c;
@@ -366,6 +474,7 @@ i.test.active {
 	flex-direction: column;
 	height: 100vh;
 	border-right: 1px solid #6c757d33;
+	z-index: 10;
 }
 .sidebar .nav-link{
 	margin-left: 10px;
@@ -394,9 +503,7 @@ i.test.active {
 }
 
 input[type="text"] {
-	margin-left: 20px;
 	height: 50px;
-	width: 40%;
 	font-size: 14px;
 	padding: 10px;
 }

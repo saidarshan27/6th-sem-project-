@@ -1,38 +1,11 @@
 <%- include("partials/header.ejs"); %>
 
-<h4 class="plansH text-center">
+
+  <h4 class="plansH text-center">
     Support
 </h4>
-<hr id="hr"> 
 
-<!-- <div class="container supportcontainer">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="list-group">
-        <li class="list-group-item active" id="Raiseticketbtn">Raise a new ticket</li>
-        <li class="list-group-item" id="Viewticketsbtn">View tickets</li>
-      </div>
-    </div>
-    <div class="col-md-8 ticketcontainer">
-      <form action="/admin/support" method="POST" class="text-center supportform" style="width:50rem;height:70vh" > 
-        <div class="form-group ml-3">
-            <select class="form-control"  style="color: #6c757d;" id="supporttype">
-                <option>Select a issue</option>
-                <option>Internet not working</option>
-                <option>Download and Upload speed low</option>
-                <option>Router configuration</option>
-              </select>
-        </div>
-        <div>
-            <textarea class="form-control ml-3"  placeholder="Any Other issue.Please tell us more" id="supporttxtA"></textarea>
-        </div>
-        <div>
-            <a href=" " class="btn btn-outline-danger mt-3" id="supportbtn" data-toggle="modal" data-target="#exampleModal">Submit</a>
-        </div>
-        </form>
-    </div>
-  </div>
-</div> -->
+<hr id="hr"> 
 
 <div class="container supportcontainer">
   <div class="row">
@@ -42,7 +15,7 @@
         <li class="list-group-item" id="Viewticketsbtn">View tickets</li>
       </div>
     </div>
-    <div class="col-md-8 ticketcontainer">
+    <div class="col-md-6 ticketcontainer">
       <form action="/admin/support" method="POST" class="text-center supportform" style="width:50rem;height:70vh" > 
         <div class="form-group ml-3">
             <select class="form-control"  style="color: #6c757d;" id="supporttype">
@@ -60,22 +33,18 @@
         </div>
         </form>
     </div>
+    <div class="col-md-2 userticketfilter">
+      <div class="list-group">
+          <li class="list-group-item"><i class="fas fa-filter mr-2"></i>Filter</li>
+          <li class="list-group-item active" id="all">All</li>
+          <li class="list-group-item" id="pending">Pending</li>
+          <li class="list-group-item" id="solved">
+              Solved
+          </li>
+      </div>
+  </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

@@ -8,7 +8,14 @@ const newcSchema= new mongoose.Schema({
     lat:String,
     lng:String,
     email:String,
-    plan:String
+    plan:String,
+    author: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
+    }
 });
 
 module.exports=mongoose.model("NewCon",newcSchema);

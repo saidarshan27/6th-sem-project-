@@ -21,7 +21,7 @@
                         <h5><%= ticket.type %></h5>
                     </div>
                     <div class="card-footer">
-                      <p><span class="createduser">By - </span><span class="status"><%= ticket.status %></span></p>
+                      <p><span class="createduser">By - <%=ticket.author.username %> </span><span class="status"><%= ticket.status %></span></p>
                       <span><a class="btn btn-outline-danger btn-sm" href="/admin/support/<%= ticket.id %>">View</a></span>
                     </div>
                 </div>

@@ -1,10 +1,17 @@
-const mongoose=require("mongoose");
+var mongoose = require("mongoose");
 
-const supportSchema=new mongoose.Schema({
-    type:String,
+var supportSchema = mongoose.Schema({
+    type: String,
     comment:String,
     date:String,
-    status:String
-})
+    status:String,
+    author: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
+    }
+});
 
-module.exports=mongoose.model("Support",supportSchema);
+module.exports = mongoose.model("Support", supportSchema);

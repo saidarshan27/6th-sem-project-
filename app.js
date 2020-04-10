@@ -2,12 +2,16 @@ require("dotenv").config();
 
 const express = require('express');
 const app = express();
+const methodOverride=require("method-override");
 const bodyParser= require('body-parser');
 const mongoose = require('mongoose');
+const passport =require("passport");
+const LocalStrategy=require("passport-local");
 var Plan=require("./models/plans");
 const Router=require("./models/routers");
 const NewCon=require("./models/newconreq");
 const NewRouter=require("./models/Nroutereq");
+const User=require("./models/user");
 const Support=require("./models/newsupport");
 const NodeGeocoder = require('node-geocoder');
 const moment       = require("moment-timezone");
@@ -27,7 +31,23 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + "/public"));
 app.locals.moment=moment;
 moment.tz.setDefault("Asia/Kolkata");
+app.use(methodOverride("_method"));
 
+//PASSPORT CONFIGURATION
+app.use(require("express-session")({
+	secret:"CSGO is the best game",
+	resave:false,
+	saveUninitialized:false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+app.use(function(req,res,next){
+	res.locals.currentUser=req.user;
+	next();
+})
 
 mongoose
 	.connect('mongodb+srv://saidarshan:R@mb02501@cluster0-wjhf4.mongodb.net/project?retryWrites=true&w=majority', {
@@ -43,65 +63,6 @@ mongoose
 		console.log('ERROR', err.message);
 	});
 
-
-
-// const data = [
-// 	{
-// 		name: 'ACT Swift',
-// 		speed: '40 Mbphs',
-// 		data: '200 GB',
-// 		postfup: ' 512 Kbps',
-// 		rental: 'Rs.685'
-// 	},
-// 	{
-// 		name: 'ACT Rapid Plus',
-// 		speed: '75 Mbphs',
-// 		data: '350 GB',
-// 		postfup: ' 512 Kbps',
-// 		rental: 'Rs.959'
-// 	},
-// 	{
-// 		name: 'ACT Blaze',
-// 		speed: '100 Mbps',
-// 		data: '450 GB',
-// 		postfup: ' 1 Mbps',
-// 		rental: 'Rs.1059'
-// 	},
-// 	{
-// 		name: 'ACT Storm',
-// 		speed: '150 Mbps',
-// 		data: '650 GB',
-// 		postfup: ' 1 Mbps',
-// 		rental: 'Rs.1159'
-// 	},
-// 	{
-// 		name: 'ACT Lightning',
-// 		speed: '200 Mbps',
-// 		data: '800 GB',
-// 		postfup: ' 1 Mbps',
-// 		rental: 'Rs.1399'
-// 	}
-// ];
-
-// Router.create({
-// 	name:"T1 Router",
-// 	price:"Rs.999",
-// 	image:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT7ZAmUcKo6W4xTIHYVzvRCEGOg9M2CqGcKh0ZG8ro1iVySGM4J"
-// },function(err,newrouter){
-// 	if(err){
-// 		console.log(err);
-// 	}else{
-// 		console.log("ADDED NEW ROUTER");
-// 	}
-// })
-
-// Plan.create(data, function(err, plans) {
-// 	if (err) {
-// 		console.log(err.message);
-// 	} else {
-// 		console.log('PLANS ADDED');
-// 	}
-// });
 
 app.get('/', function(req, res) {
 	res.render('landing');
@@ -172,7 +133,7 @@ app.get("/routers/:id",function(req,res){
 //new connection route
 //==================
 
-app.get("/new-connection/new",function(req,res){
+app.get("/new-connection/new",isLoggedIn,function(req,res){
 	res.render("newcon");
 })
 
@@ -180,7 +141,22 @@ app.get("/new-connection/new",function(req,res){
 //ADMIN ROUTES
 //==========================
 app.get("/admin",function(req,res){
-	res.render("admin/admin");
+	Support.countDocuments({},function(err,supportcount){
+		if(err){
+			console.log(err);
+		}else{
+			NewCon.countDocuments({},function(err,concount){
+				if(err){
+					console.log(err);
+				}else{
+					User.find().where("isConUser").equals("true").exec(function(err,allusers){
+						const userscount=allusers.length;
+						res.render("admin/admin",{supportcount:supportcount,concount:concount,userscount:userscount});
+					})
+				}
+			})
+		}
+	})
 })
 
 app.get("/admin/request/new-connection/:id",function(req,res){
@@ -218,6 +194,30 @@ app.get("/admin/support",function(req,res){
 		}
 	})
 })
+//posting support to admin
+app.post("/admin/support",function(req,res){
+	const data={
+		type:req.body.type,
+		comment:req.body.comment,
+		status:"Pending",
+		date:moment().format(),
+		author: {
+			id:req.user._id,
+			username:req.user.username
+		}
+	}
+	Support.create(data,function(err,newsupport){
+		console.log(req.user);
+		if(err){
+			console.log(err);
+		}else{
+			console.log(newsupport)
+			res.redirect("/home");
+		}
+	})
+})
+
+//show page for tickets admin
 app.get("/admin/support/:id",function(req,res){
 	Support.findById(req.params.id,function(err,ticket){
 		if(err){
@@ -227,8 +227,23 @@ app.get("/admin/support/:id",function(req,res){
 		}
 	})
 })
-//posting route req to admin
-app.post("/admin/request/new-router",function(req,res){
+
+//update route for ticket status
+app.put("/admin/support/:id",function(req,res){
+	Support.findByIdAndUpdate(req.params.id,{status:"Solved"},function(err,updatedticket){
+		if(err){
+			console.log(err);
+		}else{
+			res.redirect("/admin/support");
+		}
+	})
+})
+
+
+
+
+//posting router req to admin
+app.post("/admin/request/new-router",isLoggedIn,function(req,res){
 	const data={
 		routername:req.body.routername,
 		price:req.body.price
@@ -243,8 +258,9 @@ app.post("/admin/request/new-router",function(req,res){
 	})
 })
 
+
 //posting new-con req to admin
-app.post("/admin/request/new-connection",function(req,res){ 
+app.post("/admin/request/new-connection",isLoggedIn,function(req,res){ 
 var name=req.body.name;
 var phone=req.body.phone;
 var plan=req.body.plan;
@@ -258,7 +274,20 @@ geocoder.geocode(geoadress,function(err,data){
 	}else{
 		const lat=data[0].latitude;
 		const lng=data[0].longitude;
-		const newcondata={name:name,phone:phone,address:address,plan:plan,email:email,locality:locality,lat:lat,lng:lng}
+		const newcondata={
+			name:name,
+			phone:phone,
+			address:address,
+			plan:plan,
+			email:email,
+			locality:locality,
+			lat:lat,
+			lng:lng,
+			author:{
+				id:req.user._id,
+				username:req.user.username
+			}
+		}
 	NewCon.create(newcondata,function(err,newcon){
 		if(err){
 			console.log(err);
@@ -275,20 +304,136 @@ geocoder.geocode(geoadress,function(err,data){
 //============================
 //SUPPORT routes
 //============================
+
+//user side viewing tickets
 app.get("/support",function(req,res){
-	Support.find({},function(err,allsupport){
+	Support.find().where("author.id").equals(req.user._id).exec(function(err,allsupport){
 		if(err){
 			console.log(err);
 		}else{
-			res.json(allsupport);
+			if(req.xhr){
+				res.json(allsupport);
+			}else{
+				res.send("YOU CANT ACCESS IT LIKE THIS")
+			}
+		}
+	})
+	})
+
+app.get("/support/new",isLoggedIn,function(req,res){
+	res.render("support");
+})
+
+app.get("/support/:id",function(req,res){
+	Support.findById(req.params.id,function(err,ticket){
+		if(err){
+			console.log(err);
+		}else{
+			res.json(ticket);
 		}
 	})
 })
 
-app.get("/support/new",function(req,res){
-	res.render("support");
+app.delete("/support/:id",function(req,res){
+	Support.findByIdAndRemove(req.params.id,function(err,ticket){
+		if(err){
+			console.log(err);
+		}
+	})
 })
 
+
+//===================
+//Customer routes
+//===================
+
+//index for viewing all users
+app.get("/users",function(req,res){
+  User.find().where("isConUser").equals("true").exec(function(err,allusers){
+	  if(err){
+		  console.log(err);
+	  }else{
+		  res.render("admin/user",{users:allusers})
+	  }
+  })
+})
+
+app.put("/user/:id",function(req,res){
+	const phone=req.body.phone;
+	const ad1=req.body.address;
+	const ad2=req.body.locality;
+	const address=ad1+ad2;
+	const plan=req.body.plan;
+	const isConUser=true;
+    const data={
+		phone:phone,
+		address:address,
+		plan:plan,
+		isConUser:isConUser
+	}
+	User.findByIdAndUpdate(req.params.id,data,function(err,updateduser){
+		if(err){
+			console.log(err);
+		}else{
+		NewCon.deleteOne().where("author.id").equals(req.params.id).exec(function(err,deleted){
+			console.log(updateduser);
+			res.redirect("/admin");
+		})
+		}
+	})
+})
+
+
+
+
+
+//===================
+//Auth Routes
+//===================
+app.get("/register",function(req,res){
+	res.render("register");
+})
+
+//Sign up logic
+app.post("/register",function(req,res,next){
+	const newUser= new User({
+		username:req.body.username,
+		name:req.body.name,
+		email:req.body.email,
+	});
+	User.register(newUser,req.body.password,function(err,user){
+		if(err){
+			console.log(err);
+			return res.render("register");
+		}
+		passport.authenticate("local")(req,res,function(){
+			res.redirect("/home"); 
+		})
+	})
+})
+
+//show login form
+app.get("/login",function(req,res){
+	res.render("login");
+})
+//handling login logic
+app.post("/login",passport.authenticate("local",{
+	successRedirect:"/home",
+	failureRedirect:"/login"
+}))
+//logout route
+app.get("/logout",function(req,res){
+	req.logOut();
+	res.redirect("/home");
+})
+
+function isLoggedIn(req,res,next){
+	if(req.isAuthenticated()){
+		return next();
+	}else{
+		res.redirect("/login");
+	}
+}
 
 app.listen(process.env.PORT || 3000, process.env.IP, function() {
 	console.log('Project Started');

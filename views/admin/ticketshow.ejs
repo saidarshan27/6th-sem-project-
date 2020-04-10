@@ -2,24 +2,9 @@
 
 
 
-<!-- <nav class="sidebar">
-   <ul class="navlinks">
-       <li class="nav-item">
-        <a class="nav-link" href=""><i class="fas fa-chart-line mr-3"></i>Dashboard</a>
-       </li>
-       <li class="nav-item">
-        <a class="nav-link" href=""><i class="fas fa-clipboard mr-3"></i>Support tickets</a>
-       </li>
-       <li class="nav-item">
-        <a class="nav-link" href=""><i class="fas fa-wifi mr-3"></i>Connection requests</a>
-       </li>
-       <li class="nav-item">
-        <a class="nav-link" href=""><i class="fas fa-users mr-3"></i>Customers</a>
-       </li>
-   </ul>
-</nav> -->
 <h4 class="text-center plansH">Support ticket</h4>
 <hr id="hr">
+
 
 <div class="container showticketcontainer">
     <div class="row">
@@ -34,6 +19,7 @@
             </div>
         </div>
         <div class="col-md-6 realticket">
+            <form action="/admin/support/<%=ticket._id %>?_method=PUT" method="POST">
             <div>
                 <label>Type</label>
             </div>
@@ -55,10 +41,10 @@
             <div class="text-center">
                 <button class="btn btn-sm btn-outline-success"><i class="fas fa-check"></i> Solved</button>
             </div>
+        </form>
         </div>
     </div>
 </div>
-
 <%- include("../partials/supportsvg3.ejs"); %>
 
 <%- include("../partials/footer.ejs"); %>
