@@ -3,12 +3,12 @@ const passportLocalMongoose=require("passport-local-mongoose");
 
 
 const UserSchema= new mongoose.Schema({
-    username:String,
+    username:{type:String,unique:true,required:true},
     password:String,
     name:String,
     phone:String,
     address:String,
-    email:String,
+    email:{type:String,unique:true,required:true},
     plan:String,
     isConUser:{type:Boolean,default:false},
     profilepic:{},
@@ -18,7 +18,9 @@ const UserSchema= new mongoose.Schema({
     },
     rental:{},
     lat:{},
-    lng:{}
+    lng:{},
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 })
 
 
