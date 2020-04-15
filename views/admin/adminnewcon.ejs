@@ -10,6 +10,11 @@
         </div>
         <div class="card-footer newconfooter">
             <p class="mb-3">By - <%=newcon.author.username %> <span class="ml-3"> Phone - <%= newcon.phone %></span></p>
+            <span class="ml-3 time"><i class="fas fa-clock mr-1"></i>
+                <%var time= moment.tz(newcon.date,"Asia/Kolkata")%>
+                <% const difftime=moment(time).fromNow(); %>
+                <%= difftime %>
+            </span>
             <span class="viewbtn"><a class="btn btn-outline-danger " href="/admin/request/new-connection/<%= newcon._id %>">View</a></span>
         </div>
         </div>

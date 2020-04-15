@@ -28,7 +28,7 @@
                   <%= user.username %>
                 </strong></td>
               <td><%= user.plan %></td>
-              <td ><%= user.email %><i class="fas fa-chevron-circle-right planarrow"></i></a></td>
+              <td class="d-flex justify-content-between"><%= user.email %><a href="/users/<%= user._id %>"><i class="fas fa-chevron-circle-right planarrow"></i></a></td>
             </tr>
           <% }) %>
         </tbody>

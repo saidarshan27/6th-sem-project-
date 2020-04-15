@@ -1,5 +1,7 @@
 <%- include('partials/header'); -%>
 
+<h4 class="text-center plansH"><%= plan.name %></h4>
+<hr id="hr">
 
 <div class="container">
   <div class="row showplan">
@@ -8,7 +10,7 @@
         <div class="card-body">
           <div class="card-header"><h4><a href="/plans" style="color: #ea1c2c;">Plans</a></h4></div>
           <div class="list-group">
-            <li class="list-group-item">
+            <li class="list-group-item" style="border: none;">
               <% plans.forEach(function(plan){ %>
                 <a class="nav-link"  href="/plans/<%= plan._id %>"><%= plan.name %></a>
               <% }) %>
@@ -34,9 +36,9 @@
             <p class="card-text"><i class="fas fa-wifi icon "></i><%= plan.data %></p>
             <p class="card-text"><i class="fas fa-tachometer-alt icon"></i><%= plan.postfup %></p>
             <p class="card-text"></p><i class="fas fa-rupee-sign icon"></i><%= plan.rental %> per month</p>
-            <a href="#" class="btn btn-danger" style="color:white" id="buy1">Buy Now for Rs.<%= plan.rental %></a>
-            <a href="#" class="btn btn-danger displaymonth" style="color:white;" id="buy3" >Buy Now for Rs.<%= plan.rental*3 %></a>
-            <a href="#" class="btn btn-danger displaymonth" style="color:white;" id="buy6">Buy Now for Rs.<%= plan.rental*6 %></a>
+            <a href="/new-connection/new" class="btn btn-danger" style="color:white" id="buy1">Buy Now for Rs.<%= plan.rental %></a>
+            <a href="/new-connection/new" class="btn btn-danger displaymonth" style="color:white;" id="buy3" >Buy Now for Rs.<%= plan.rental*3 %></a>
+            <a href="/new-connection/new" class="btn btn-danger displaymonth" style="color:white;" id="buy6">Buy Now for Rs.<%= plan.rental*6 %></a>
           </div>
         </div>
     </div>

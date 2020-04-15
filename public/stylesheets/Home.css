@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	outline: none;
 }
 
 
@@ -30,7 +31,23 @@ h1 {
 .plansH {
 	color: #ea1c2c;
 }
+.profilecard .card-img-top{
+	height: 250px;
+	width: 100%;
+	border-radius: 70%;
+	border: 1px solid #6c757d33;
+}
 
+.profilecard{
+	padding: 20px 25px;
+	width: 20em;
+}
+.profilecard .card-header{
+	border: none;
+}
+.editbtn{
+	position: absolute;
+}
 .showplan {
 	height: 70vh;
 	display: flex;
@@ -89,7 +106,7 @@ h1 {
 	font-size: 1.35rem;
 }
 .newconcard{
-	width: 40em;
+	width: 55em;
 	height: 8em;
 	margin-bottom: 30px;
 	border-left:5px solid #ea1c2c ;
@@ -99,6 +116,13 @@ h1 {
 	display: flex;
     justify-content: space-between;
 	padding: .75rem .25rem;
+	font-size: .9rem;
+	font-family: 'Baloo 2', cursive;
+	font-weight: 700;
+}
+
+.newconfooter .time{
+	color:#707070;
 }
 .newconreqcontainer{
 	padding-top: 50px ;
@@ -212,17 +236,7 @@ a:hover {
 .card-footer{
 	background-color: white;
 }
-.filterdiv{
-	display:flex;
-	flex-direction: row-reverse;
-	width: 115%;
-	position: absolute;
-}
-.filterdiv .btn-danger{
-	padding:5px 15px;
-	height: 30px;
-    margin-right: 20px;
-}
+
 .statuscard{
 	display: none;
 	margin-left: 45.5em;
@@ -270,8 +284,39 @@ a:hover {
 	border:1px solid rgba(255, 1, 1,0.185);
 	box-shadow: 0 0 0 .2rem rgba(255, 1, 1, 0.363);
 }
+.form-control:disabled, .form-control[readonly] {
+    background-color: #fff;
+    opacity: 1;
+}
 .supportcontainer textarea{
 	padding: 10px 10px;
+}
+.cameraicon{
+position: relative;
+cursor: pointer;
+left: 6.2em;
+bottom: 7.5em;
+color: red;
+z-index: 10;
+background: white;
+width: 55px;
+padding: 10px;
+border-radius: 90%;
+border: 1px solid rgba(128, 128, 128, 0.301);
+}
+
+.profilecardname::first-letter{
+	text-transform: capitalize;
+}
+.profilecardname{
+	font-size: large;
+}
+.editsuccess{
+	color: green;
+	font-size:.9rem;
+	font-family: 'Baloo 2', cursive;
+	font-weight: 700;
+	display: none;
 }
 .supportcontainer select{
 	height: 50px;
@@ -316,6 +361,12 @@ a:hover {
 	border-top: 0;
 }
 .ticketfooter .time {
+	color:#707070;
+}
+.adminsupporticket .time{
+	font-size:.9rem;
+	font-family: 'Baloo 2', cursive;
+	font-weight: 700;
 	color:#707070;
 }
 .ticketfooter p{
@@ -365,7 +416,6 @@ a:hover {
 	font-weight: 700;
 }
 .showticketcontainer{
-	margin-top:50px;
 	padding-top: 50px;
 }
 .adminsupporticket .card-footer{
@@ -475,6 +525,7 @@ i.test.active {
 	height: 100vh;
 	border-right: 1px solid #6c757d33;
 	z-index: 10;
+	top:80px;
 }
 .sidebar .nav-link{
 	margin-left: 10px;

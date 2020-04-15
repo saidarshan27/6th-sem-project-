@@ -1,3 +1,5 @@
+
+
 moment.tz.setDefault("Asia/Kolkata");
 var count=0;
 const tickets=$(".adminsupporticket");
@@ -50,7 +52,6 @@ $("#supportbtn").on("click",function(){
   var comment=$("#supporttxtA").val();
   console.log(comment);
   var data={type:type,comment:comment}
-  console.log(data);
   $.ajax({
     method:"POST",
     url:"/admin/support",
@@ -131,8 +132,6 @@ $("#Viewticketsbtn").on("click",function(){
 
 
 $("#Raiseticketbtn").on("click",function(){
-  isInside=true;
-  console.log(isInside);
   $(this).addClass("active");
   $(this).siblings(".active").removeClass("active");
   $(".ticketcard").hide("slow");
@@ -144,8 +143,8 @@ $("#Raiseticketbtn").on("click",function(){
 $(".ticketcontainer").on("click",".viewticketbtn",function(e){
   count=0;
   e.preventDefault();
-  $(".filterdiv").fadeOut();
   $(".statuscard").fadeOut();
+   $(".userticketfilter").hide("slow");
   const url=$(this).attr("href");
   if(count==0){
     $.get(url,function(data){
@@ -154,38 +153,50 @@ $(".ticketcontainer").on("click",".viewticketbtn",function(e){
       const type=data.type;
       const comment=data.comment;
       const id=data._id;
+      const status=data.status
       $(".ticketcontainer").append(
         `
         <div class="col-md-12 userviewticket">
-              <form action="/admin/support/<%=ticket._id %>?_method=PUT" method="POST">
-              <div>
-                  <label>Ticket Refrence Number</label>
+        <div class="col-md-5 mr-5">
+        <form url="/support/${id}">
+          <label style="width: 50em;display: flex;justify-content: space-between;">
+          <strong>Ticket Refrence Number</strong>
+          <span class="status">${status}</span>
+          </label>
+          <div class="input-group mb-3" style="width:50em">
+              <input type="text" class="form-control ticketinput" value="${id}" name="id" disabled="true">
+            </div>
+          <label><strong>Type</strong></label>
+          <div class="input-group mb-3" style="width:50em">
+              <input type="text" class="form-control ticketinput" value="${type}" name="type" disabled="true">
+            </div>
+          <label><strong>Comment</strong></label>
+          <div class="input-group mb-3" style="width:50em">
+              <input type="text" class="form-control ticketinput" value="${comment}" name="comment" disabled="true">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary editdonebtn" type="button" style="display: none;"><i class="fas fa-check"></i></button>
+                <button class="btn btn-outline-secondary editcancelbtn" type="button" style="display: none;"><i class="fas fa-times"></i></button>
+                <button class="btn btn-outline-secondary profileditbtn" type="button"><i class="fas fa-pencil-alt"></i></button>
               </div>
-              <div>
-                 <label class="form-control" style="padding-top:10px;padding-bottom:10px;height:45px;">${id}</label>
-              </div>
-              <div>
-                  <label>Type</label>
-              </div>
-              <div>
-                 <input type="text" class="form-control" value="${type}" disabled></input>
-              </div>
-              <div>
-                  <label>Comments</label>
-              </div>
-              <div>
-                  <input type="text" class="form-control" value="${comment}">
-              </div>
-          </form>
+            </div>
           <ul class="navbar-nav">
           <li class="nav-item">
           <a class="nav-link gobackbtn">Go back</a>
           </li>
           <ul>
           </div>
-  
         `
       )
+      $(".status").each(function(index){
+        if($( this ).text()=="Pending"){
+          $(".profileditbtn").show();
+          $( this ).addClass("colorP");
+        }else{
+          $(".profileditbtn").hide();
+          $(".profileditbtn").parents().siblings(".form-control").prop("disabled",true);
+          $( this ).addClass("colorS");
+        }
+      })
     })
     count+=+1;
   }
@@ -223,6 +234,7 @@ $("#all").on("click",function(){
 $(".ticketcontainer").on("click",".gobackbtn",function(){
   $(".userviewticket").hide("slow");
   $(".ticketcard").show("show");
+  $(".userticketfilter").show("slow");
   $("#pending").removeClass("active");
   $("#solved").removeClass("active");
   $("#all").addClass("active");
@@ -232,6 +244,7 @@ $(".ticketcontainer").on("click",".optionsbtn",function(){
   const kyabre=$(this).find(".deletelbl");
   kyabre.toggle("slow");
 })
+
 
 $(".ticketcontainer").on("click",".deletelbl",function(){
   const url=$(this).attr("href");
@@ -243,8 +256,151 @@ $(".ticketcontainer").on("click",".deletelbl",function(){
   parent.remove();
 })
 
-$(".ticketcontainer").on("click",".filterdiv",function(){
-  const kyabre1=$(this).siblings(".statuscard");
-  kyabre1.fadeToggle();
+$(".ticketcontainer").on("click",".profileditbtn",function(){
+  $(this).siblings().toggle("slow");
+  $(this).parent().siblings(".form-control").prop("disabled",false);
+  $(this).parent().siblings(".form-control").focus();
 })
 
+$(".ticketcontainer").on("click",".editcancelbtn",function(){
+  const input=$(this).parents().siblings(".ticketinput");
+  input.focusout();
+  input.prop("disabled",true);
+  $(this).hide("slow");
+  $(this).siblings(".editdonebtn").hide("slow");
+})
+
+$(".ticketcontainer").on("click",".editdonebtn",function(){
+  $(this).hide("slow");
+  $(this).siblings(".editcancelbtn").hide("slow");
+  const input=$(this).parents().siblings(".ticketinput");
+  input.focusout();
+  input.prop("disabled",true);
+  const key=input.attr("name");
+  const data={[key]:input.val()}
+  const url=$(this).parents("form").attr("url");
+  $originalItem=input;
+  $.ajax({
+    method:"PUT",
+    url:url,
+    data:data,
+    originalItem:$originalItem,
+    success:function(data){
+      const editdata=data[key];
+      this.originalItem.val(`${editdata}`);
+    }
+  })
+  input.css("border","3px solid green");
+ setTimeout(function(){
+  input.css("border","1px solid #ced4da");
+  input.prop("disabled",true);
+ },1500)
+})
+
+$(".profileditbtn").click(function(){
+  $(this).siblings().toggle("slow");
+  $(this).parent().siblings(".form-control").prop("disabled",false);
+  $(this).parent().siblings(".form-control").focus();
+})
+
+
+
+$(".editdonebtn").click(function(){
+    $(this).hide("slow");
+    $(this).siblings(".editcancelbtn").hide("slow");
+    const input=$(this).parents().siblings(".profileinput");
+    input.focusout();
+    const key=input.attr("name");
+    const data={[key]:input.val()}
+    const url=$(this).parents("form").attr("url");
+    console.log(url);
+    $originalItem=input;
+    $.ajax({
+      method:"PUT",
+      url:url,
+      data:data,
+      originalItem:$originalItem,
+      success:function(data){
+        const editdata=data[key];
+        if(key=="name"){
+         $(".profilecardname").text(`${editdata}`);
+        }
+        this.originalItem.val(`${editdata}`);
+      }
+    })
+    input.css("border","3px solid green");
+   $(this).parents(".input-group").siblings().show("slow").delay(1000).hide("slow");
+   setTimeout(function(){
+    input.css("border","1px solid #ced4da");
+    input.prop("disabled",true);
+   },1500)
+  })
+
+
+$(".editcancelbtn").click(function(){
+  const input=$(this).parents().siblings(".profileinput");
+  input.focusout();
+  input.prop("disabled",true);
+  $(this).hide("slow");
+  $(this).siblings(".editdonebtn").hide("slow");
+})
+
+$(".cameraicon").click(function(){
+  $(".fielupload").toggle("slow");
+})
+
+$(".custom-file-input").change(function(){
+   var file = $(".custom-file-input")[0].files[0].name;
+   $(".custom-file-label").text(file)
+})
+
+$(".ticketuserinfo").click(function(){
+  $(this).addClass("active");
+  $(this).siblings().removeClass("active");
+  $(".adminticketform").hide("slow");
+  $(".personalsupportinfo").show("slow");
+  const url=$(".adminticketform").attr("url");
+  if(count===0){
+    $.get(url,function(data){
+      console.log(data);
+      $(".realticket").append(`
+      <div class="personalsupportinfo">
+      <div class="input-group">
+      <label class="activeuser d-flex justify-content-between" style="width: 50em;">
+      <strong>Name</strong>
+      <span class="isconuser " style="	font-size: .9rem;font-family: 'Baloo 2',cursive;font-weight: 700;color:green">
+      Active Connection User
+      </span>
+      </label>
+      </div>
+      <label class="form-control mb-3">${data.name}</label>
+      <div class="input-group">
+      <label><strong>Plan</strong></label>
+      </div>
+      <label class="form-control mb-3">${data.plan}</label>
+      <div class="input-group">
+      <label><strong>E-mail ID</strong></label>
+      </div>
+      <label class="form-control mb-3">${data.email}</label>
+      <div class="input-group">
+      <label><strong>Phone</strong></label>
+      </div>
+      <label class="form-control mb-3">${data.phone}</label>
+      <div class="input-group">
+      <label><strong>Address</strong></label>
+      </div>
+      <textarea class="form-control mb-3">${data.address}</textarea>
+      </div>
+      `)
+    })
+    count+=+1;
+  }
+ 
+})
+
+$(".ticketinfo").click(function(){
+  $(this).siblings().removeClass("active");
+  $(this).addClass("active");
+  $(".adminticketform").show("slow");
+  $(".personalsupportinfo").hide("slow");
+})

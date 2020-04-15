@@ -1,0 +1,77 @@
+<%- include("../partials/adminheader.ejs"); %>
+
+<h4 class="text-center plansH">User Details</h4>
+<hr id="hr">
+
+<div class="container" style="max-width: 90em;margin-left: 25em;">
+    <div class="row">
+		<div class="col-md-3 mt-5">
+			<div class="list-group">
+				<li class="list-group-item active" id="personalinfo">Personal Info </li>
+      </div>
+            <div id="map"></div>
+        </div>
+        <div class="col-md-8 inputs ml-5">
+                <div class="form-group">
+                    <label><strong>Name</strong></label>
+                    <input  class="form-control" type="text"  value="<%= user.name %>" name="name">
+                </div>
+                <div class="form-group">
+                    <label><strong>Plan</strong></label>
+                    <input class="form-control" type="text"  value="<%= user.plan %>" name="phone">
+                </div>
+                <div class="form-group">
+                     <label><strong>E-mail ID</strong></label>
+                      <input class="form-control" type="text"  value="<%= user.email %>" name="plan">
+                </div>
+                <div class="form-group">
+                    <label><strong>Address</strong></label>
+                    <textarea class="form-control" name="address" style="width: 40.5em;"><%= user.address %></textarea>
+                </div>
+                <div class="form-group">
+                  <label><strong>Rental Due</strong></label>
+                  <input class="form-control" type="text"  value="<%= user.rental %>" name="locality">
+              </div>
+                <div>
+                    <label><strong>Data Remaining</strong></label>
+                    <input class="form-control" type="text"  value="<%= user.data.total %>" name="email">
+                </div> 
+        </div>
+</div>
+</div>
+<script>
+    function initMap() {
+      var latstring = "<%= user.lat %>"
+      var lngstring = "<%= user.lng %>";
+      var lat=parseFloat(latstring);
+      var lng=parseFloat(lngstring);
+      var center = {lat: lat, lng: lng };
+      var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 16,
+          center: center,
+          scrollwheel: false
+      });
+      var contentString = `
+        <strong><%= user.name %><br/>
+        <%= user.address %></strong>
+      `
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+      var marker = new google.maps.Marker({
+          position: center,
+          map: map
+      });
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD27OCfERJWk0dd1ziqQ05mu0eHdvuickI&callback=initMap"></script>
+
+
+<%- include("../partials/footer.ejs"); %>
+
+
+
+<

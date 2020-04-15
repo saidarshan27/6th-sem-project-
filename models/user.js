@@ -10,7 +10,15 @@ const UserSchema= new mongoose.Schema({
     address:String,
     email:String,
     plan:String,
-    isConUser:{type:Boolean,default:false}
+    isConUser:{type:Boolean,default:false},
+    profilepic:{},
+    data:{
+        total:String,
+        used:String
+    },
+    rental:{},
+    lat:{},
+    lng:{}
 })
 
 

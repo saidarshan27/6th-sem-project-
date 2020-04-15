@@ -15,7 +15,8 @@ const newcSchema= new mongoose.Schema({
             ref: "User"
         },
         username: String
-    }
+    },
+    date:String
 });
 
 module.exports=mongoose.model("NewCon",newcSchema);

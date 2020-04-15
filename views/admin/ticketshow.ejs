@@ -10,16 +10,16 @@
     <div class="row">
         <div class="col-md-3">
             <div class="list-group mt-5">
-                <li class="list-group-item active">
+                <li class="list-group-item active ticketinfo">
                     Ticket
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item ticketuserinfo">
                     Personal Info
                 </li>
             </div>
         </div>
         <div class="col-md-6 realticket">
-            <form action="/admin/support/<%=ticket._id %>?_method=PUT" method="POST">
+            <form action="/admin/support/<%=ticket._id %>?_method=PUT" method="POST" url="/user/<%= ticket.author.id %>" class="adminticketform"> 
             <div>
                 <label>Type</label>
             </div>
