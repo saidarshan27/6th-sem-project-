@@ -7,6 +7,7 @@ const bodyParser= require('body-parser');
 const mongoose = require('mongoose');
 const passport =require("passport");
 const LocalStrategy=require("passport-local");
+var FacebookStrategy = require('passport-facebook').Strategy;
 const multer=require("multer");
 const async=require("async");
 const nodemailer=require("nodemailer");
@@ -46,12 +47,45 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(function(user, done) {
+	done(null, user);
+  });
+  
+passport.deserializeUser(function(user, done) {
+	done(null, user);
+  });
 app.use(function(req,res,next){
 	res.locals.currentUser=req.user;
 	next();
 })
+passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+	callbackURL: 'http://localhost:3000/auth/facebook/callback',
+	profileFields:["email","name"]
+  },
+  function(accessToken, refreshToken, profile, done) { 
+	console.log(profile);
+	User.findOne({'email':profile._json.email},function(err,user){
+		if(err){
+			done(err);
+		}else{
+			if(user){
+                return done(null,user);   
+			}else{
+				const data={email:profile._json.email,name:profile._json.first_name+profile._json.last_name,isFB:true}
+				User.create(data,function(err,newuser){
+					if(err){
+						console.log(err);
+					}else{
+						return done(null,newuser);
+					}
+				})
+			}
+		}
+	})
+  }
+));
 
 const mongoURI="mongodb+srv://saidarshan:R@mb02501@cluster0-wjhf4.mongodb.net/project?retryWrites=true&w=majority"
 
@@ -193,6 +227,7 @@ app.get("/admin",function(req,res){
 				if(err){
 					console.log(err);
 				}else{
+					req.logOut();
 					User.find().where("isConUser").equals("true").exec(function(err,allusers){
 						const userscount=allusers.length;
 						res.render("admin/admin",{supportcount:supportcount,concount:concount,userscount:userscount});
@@ -253,11 +288,9 @@ app.post("/admin/support",function(req,res){
 		}
 	}
 	Support.create(data,function(err,newsupport){
-		console.log(req.user);
 		if(err){
 			console.log(err);
 		}else{
-			console.log(newsupport)
 			res.redirect("/home");
 		}
 	})
@@ -472,7 +505,7 @@ app.put("/user/:id",function(req,res){
 	const isConUser=true;
 	switch(plan){
 		case "ACT Blaze":
-			pack="450 GB " ;
+			pack="450 GB" ;
 			rental=1059;
 			break;
 		case "ACT Swift":
@@ -504,7 +537,7 @@ app.put("/user/:id",function(req,res){
 		lat:lat,
 		lng:lng
 	}
-	User.findByIdAndUpdate(req.params.id,data,function(err,updateduser){
+	User.findByIdAndUpdate(req.params.id,data,{new:true},function(err,updateduser){
 		if(err){
 			console.log(err);
 		}else{
@@ -523,6 +556,17 @@ app.put("/user/:id",function(req,res){
 //===================
 //Auth Routes
 //===================
+app.get('/auth/facebook', passport.authenticate('facebook',{scope:['email']}));
+
+app.get('/auth/facebook/callback',passport.authenticate('facebook',
+ { 
+ successRedirect: '/home',
+ failureRedirect: '/login'
+ }
+ ));
+
+
+
 app.get("/register",function(req,res){
 	res.render("register");
 })
@@ -542,6 +586,38 @@ app.post("/register",function(req,res,next){
 		passport.authenticate("local")(req,res,function(){
 			res.redirect("/home"); 
 		})
+	})
+})
+
+//isEmailAvailable
+app.post("/register/isEmailAvailable",(req,res)=>{
+	const data=req.body;
+	User.findOne(data,function(err,user){
+		if(err){
+			console.log(err);
+		}else{
+			if(user){
+				res.json("");
+			}else{
+				res.json(true);
+			}
+		}
+	})
+})
+
+//isUsernameAvailable
+app.post("/register/isUsernameAvailable",(req,res)=>{
+	const data=req.body;
+    User.findOne(data,function(err,user){
+		if(err){
+			console.log(err);
+		}else{
+			if(user){
+				res.json("");
+			}else{
+				res.json(true);
+			}
+		}
 	})
 })
 

@@ -10,9 +10,11 @@
                 <li class="list-group-item active">Personal info</li>
                 <li class="list-group-item">Payment History</li>
                 <li class="list-group-item">Upgrade Plan</li>
-                <li class="list-group-item">Change Password
-                  <a href="/forgot" class="stretched-link"></a>
-                </li>
+                <% if(currentUser.isFB!=true){ %>
+                  <li class="list-group-item">Change Password
+                    <a href="/forgot" class="stretched-link"></a>
+                  </li>
+                <% } %>
             </div>
         </div>
         <div class="col-md-5 mr-5">

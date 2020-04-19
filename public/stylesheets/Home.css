@@ -258,7 +258,6 @@ a:hover {
 }
 
 .newconcontainer{
-	padding: 50px 30px;
 	height: 80vh;
 	display: flex;
 	flex-direction: row;
@@ -266,8 +265,7 @@ a:hover {
 	align-items: center;
 }
 .newconcontainer input[type="text"]{
-   margin-bottom: 10px;
-   width: 98%;
+   width: 100%;
 }
 .supportcontainer{
 	margin-bottom: 0;
@@ -280,10 +278,10 @@ a:hover {
 	width: 98%;
 	height: 30%;
 }
-.supportcontainer textarea:focus{
+/* .supportcontainer textarea:focus{
 	border:1px solid rgba(255, 1, 1,0.185);
 	box-shadow: 0 0 0 .2rem rgba(255, 1, 1, 0.363);
-}
+} */
 .form-control:disabled, .form-control[readonly] {
     background-color: #fff;
     opacity: 1;
@@ -304,6 +302,7 @@ padding: 10px;
 border-radius: 90%;
 border: 1px solid rgba(128, 128, 128, 0.301);
 }
+
 
 .profilecardname::first-letter{
 	text-transform: capitalize;
@@ -352,7 +351,33 @@ border: 1px solid rgba(128, 128, 128, 0.301);
 	background-color: red;
 	color: white;
 }
+.signupform{
+	padding: 50px 30px;
+	background-color: rgba(243, 243, 243, 0.329);
+	border-radius: 3%;
+	border: 1px solid rgb(243, 243, 243);;
+}
 
+.loginform{
+	margin-top: 150px;
+	padding: 50px 30px;
+	height: 50vh;
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+	align-items: center;
+	background-color: rgba(243, 243, 243, 0.329);
+	width: 38em;
+	border-radius: 3%;
+	border: 1px solid rgb(243, 243, 243)
+	
+}
+.forgot{
+	font-size:1rem;
+	font-family: 'Baloo 2', cursive;
+	font-weight: 700;
+	color:#707070;
+}
 .ticketfooter{
 	display: flex;
 	flex-direction: row;
@@ -422,10 +447,18 @@ border: 1px solid rgba(128, 128, 128, 0.301);
 	display: flex;
 	justify-content: space-between;
 }
-.newconcontainer input[type="text"]:focus{
-	border-color: rgb(255, 0, 0);
+/* .newconcontainer input[type="text"]:focus{
+	border-color: rgba(255, 0, 0, 0.349);
 	box-shadow: 0 0 0 .2rem rgba(255, 1, 1, 0.185);
 }
+.newconcontainer input[type="email"]:focus{
+	border-color: rgba(255, 0, 0, 0.349);
+	box-shadow: 0 0 0 .2rem rgba(255, 1, 1, 0.185);
+}
+.newconcontainer select:focus{
+	border-color: rgba(255, 0, 0, 0.349);
+	box-shadow: 0 0 0 .2rem rgba(255, 1, 1, 0.185);
+} */
 .realticket{
 	margin-left: 9em;
 }
@@ -470,9 +503,7 @@ border: 1px solid rgba(128, 128, 128, 0.301);
 #mainNavbar{
 	margin-bottom: 40px;
 }
-.dropdown-item:hover {
-	color: #ea1c2c;
-}
+
 .slider-icon {
 	color: #ea1c2c;
 	font-size: 50px;
@@ -577,4 +608,56 @@ input[type="text"]:focus {
 #Ctypebtn:hover {
 	background: white;
 	color: #ea1c2c;
+}
+
+.signuppassword{
+	height: 45px;
+	font-size: 14px;
+	padding: 10px;
+	width: 100%
+}
+.loginpassword{
+	height: 45px;
+	font-size: 14px;
+	padding: 10px;
+	width: 100%
+}
+.signupemail{
+	height: 45px;
+	font-size: 14px;
+	padding: 10px;
+	width: 100%
+}
+#newconemail{
+	height: 45px;
+	font-size: 14px;
+	padding: 10px;
+	width: 100%
+}
+#newconphone{
+	height: 45px;
+	font-size: 14px;
+	padding: 10px;
+	width: 100%
+}
+.loginor{
+	width:100%;
+	font-size:.9rem;
+	font-family: 'Baloo 2', cursive;
+	font-weight: 700;
+	color:#707070;
+}
+.invalid{
+	border:2px solid red;
+	box-shadow: none;
+}
+.invalid:focus{
+	border:2px solid red;
+	box-shadow: none;
+}
+.error{
+	font-size:.9rem;
+	font-family: 'Baloo 2', cursive;
+	font-weight: 700;
+	color:red
 }

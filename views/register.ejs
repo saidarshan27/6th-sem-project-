@@ -1,23 +1,29 @@
 <%- include("partials/header.ejs"); %>
 
-<h4 class="text-center plansH">Sign Up</h4>
-<hr id="hr">
 
-<div class="container newconcontainer">
-    <form action="/register" method="POST" class="text-center" style="width:50rem;height:70vh" >
-        <div class="form-group">
-            <input  class="form-control" type="text" name="name" placeholder="name">
-        </div> 
-        <div>
-            <input class="form-control" type="text" name="email" placeholder="Enter your e-mail id" id="newconemail">
-        </div> 
-        <div class="form-group">
-            <input  class="form-control" type="text" name="username" placeholder="Username">
+
+<div class="container">
+    <div class="row justify-content-center" style="height: 80vh;margin-top: 15%;">
+        <div class="col-sm-6">
+            <form action="/register" method="POST" class="signupform">
+                <div class="form-group">
+                    <h4 class="text-center plansH">Sign Up</h4>
+                </div>
+                <div class="form-group">
+                    <input name="name" class="form-control signupname" type="text"  placeholder="name">
+                </div> 
+                <div class="form-group">
+                    <input name="email" id="email" class="form-control signupemail" type="email"  placeholder="Enter your e-mail id" autocomplete="off">                   
+                </div> 
+                <div class="form-group">
+                    <input name="username" id="username" class="form-control signupusername" type="text"  placeholder="Username" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input name="password"  class="form-control signuppassword" type="password" placeholder="Password" autocomplete="off">
+                </div>
+                <button class="btn btn-outline-danger btn-block mr-1" href="">Sign Up</button>
+              </form>
         </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
-        </div>
-        <button class="btn btn-outline-danger" href="">Sign Up</button>
-      </form>
+    </div>
 </div>
 <%- include("partials/footer.ejs"); %>

@@ -4,34 +4,43 @@
 <hr id="hr">
 
 <div class="container newconcontainer">
-    <form action="/admin/request/new-connection" method="POST" class="text-center" style="width:50rem;height:70vh" > 
+    <form action="/admin/request/new-connection" method="POST" class="mt-1 newconform" style="width:50rem;height:75vh" > 
         <div class="form-group">
-            <input  class="form-control" type="text" name="newcon[name]" placeholder="Enter your name" id="newconname">
-        </div>
+            <label><strong>Name</strong></label>
+            <input class="form-control" type="text" name="newcon[name]" placeholder="Enter your name" id="newconname" value="<%= currentUser.name %>">       
+          </div>
         <div class="form-group">
-            <input class="form-control" type="text" name="newcon[phone]" placeholder="Enter your phone number" id="newconphone">
-        </div>
-        <div class="form-group ml-3">
-            <select class="form-control" name="newcon[plan]" style="color: #6c757d;" id="newconplan">
-                <option>Pick a plan</option>
-                <option>ACT Swift</option>
-                <option>ACT Rapid Plus</option>
-                <option>ACT Storm</option>
-                <option>ACT Lighting</option>
+           <label><strong>Phone Number</strong></label>
+            <input class="form-control reqfield" type="tel" name="newcon[phone]" placeholder="Enter your 10-digit phone number" id="newconphone" maxlength="10">
+          </div>
+        <div class="form-group">
+          <label><strong>Plan</strong></label>
+            <select class="form-control reqfield" name="newcon[plan]" style="color: #6c757d;" id="newconplan">
+                <option value="">Pick a plan</option>
+                <option value="ACT Swift">ACT Swift</option>
+                <option value="ACT Rapid Plus">ACT Rapid Plus</option>
+                <option value="ACT Storm">ACT Storm</option>
+                <option value="ACT Lighting">ACT Lighting</option>
               </select>
         </div>
+        <div  class="form-group">
+          <label><strong>Address</strong></label>
+            <input class="form-control reqfield" type="text" name="newcon[address]" placeholder="Address lane" id="newconaddress">
+          </div>
         <div class="form-group">
-            <input class="form-control" type="text" name="newcon[address]" placeholder="Address lane" id="newconaddress">
+          <label><strong>Locality</strong></label>
+          <input class="form-control reqfield" type="text" name="newcon[locality]" placeholder="Locality" id="newconlocality">
         </div>
-        <div class="form-group">
-          <input class="form-control" type="text" name="newcon[locality]" placeholder="Locality" id="newconlocality">
-      </div>
-        <div>
-            <input class="form-control" type="text" name="newcon[email]" placeholder="Enter your e-mail id" id="newconemail">
-        </div> 
-        <a id="newconbtn" class="btn btn-outline-danger" href="" data-toggle="modal" data-target="#exampleModal">Submit</a>
+        <div lass="form-group">
+          <label><strong>E-mail address</strong></label>  
+          <input class="form-control" type="email" name="newcon[email]" placeholder="johdoe@example.com" id="newconemail" value="<%= currentUser.email %>">
+          </div> 
+        <div class="text-center">
+          <input type="submit" class="btn btn-outline-danger mt-3" value="Submit">
+        </div>  
       </form>
 </div>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

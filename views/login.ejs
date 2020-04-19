@@ -1,15 +1,27 @@
 <%- include("partials/header.ejs"); %>
 
-<div class="container newconcontainer">
-    <form action="/login" method="POST" class="text-center" style="width:50rem;height:70vh" >
+<div class="container loginform">
+    <div class="form-group">
+        <h4 class="plansH">Login</h4>
+    </div>
+    <form action="/login" method="POST" style="width:30rem;height:70vh" class="realoginform" >
         <div class="form-group">
-            <input  class="form-control" type="text" name="username" placeholder="Username">
+            <input  class="form-control username" type="text" name="username" placeholder="Username" autocomplete="off">
         </div>
         <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
+            <input class="form-control loginpassword" type="password" name="password" placeholder="Password">
         </div>
-        <button class="btn btn-outline-danger btn-block" href="">Login</button>
-      </form>
+        <input type="submit" class="btn btn-outline-danger btn-block" value="Login"></button>
+        <div class="d-flex justify-content-between mt-3 forgot">
+            <a href="/forgot">Forgot Password ?</a>
+            <a href="/register">Don't have a account yet?</a>
+        </div>
+        <hr>
+        <label class="text-center loginor">OR</label>
+        <div class="fb mt-2">
+          <a href="/auth/facebook" class="btn btn-block btn-primary" style="font-family: 'Baloo 2', cursive;font-weight: 700"><i class="fab fa-facebook-square mr-2"></i>Log in with Facebook</a>
+        </div>
+    </form>
 </div>
 
 <%- include("partials/footer.ejs"); %>

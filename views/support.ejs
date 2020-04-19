@@ -16,20 +16,22 @@
       </div>
     </div>
     <div class="col-md-6 ticketcontainer">
-      <form action="/admin/support" method="POST" class="text-center supportform" style="width:50rem;height:70vh" > 
+      <form action="/admin/support" method="POST" class="supportform" style="width:50rem;height:70vh" > 
         <div class="form-group ml-3">
-            <select class="form-control"  style="color: #6c757d;" id="supporttype">
-                <option>Select a issue</option>
-                <option>Internet not working</option>
-                <option>Download and Upload speed low</option>
-                <option>Router configuration</option>
+          <label class="ml-2.5"><strong>Select a issue</strong></label>
+            <select name="type" class="form-control"  style="color: #6c757d;" id="supporttype" >
+                <option value="">Select a issue</option>
+                <option value="Internet not working">Internet not working</option>
+                <option value="Download and Upload speed low">Download and Upload speed low</option>
+                <option value="Router configuration">Router configuration</option>
               </select>
         </div>
         <div>
-            <textarea class="form-control ml-3"  placeholder="Any Other issue.Please tell us more" id="supporttxtA"></textarea>
+          <label class="ml-3"><strong>Description</strong></label>
+            <textarea name="comments" class="form-control ml-3"  placeholder="Please tell us more" id="supporttxtA"></textarea>
         </div>
-        <div>
-            <a href=" " class="btn btn-outline-danger mt-3" id="supportbtn" data-toggle="modal" data-target="#exampleModal">Submit</a>
+        <div class="text-center">
+            <input type="submit" class="btn btn-outline-danger mt-3" value="Submit">
         </div>
         </form>
     </div>

@@ -1,11 +1,9 @@
-
-
 moment.tz.setDefault("Asia/Kolkata");
 var count=0;
 const tickets=$(".adminsupporticket");
 
 
-$(function(){
+$(function($){
   $(".adminsupporticket" ).each(function( index ) {
     if($( this ).find(".status").text()=="Pending"){
       $( this ).addClass("pending");
@@ -46,33 +44,59 @@ $("#routerpricebutton").on("click",function(){
   })
 
 })
-$("#supportbtn").on("click",function(){
-  var type=$("#supporttype").val();
-  console.log(type);
-  var comment=$("#supporttxtA").val();
-  console.log(comment);
-  var data={type:type,comment:comment}
-  $.ajax({
-    method:"POST",
-    url:"/admin/support",
-    data:data
-  })
+$(".supportform").on("submit",function(e){
+  e.preventDefault();
+  if($(this).serialize().length>15){
+    $('#exampleModal').modal('show');
+    var type=$("#supporttype").val();
+    var comment=$("#supporttxtA").val();
+    var data={type:type,comment:comment}
+    $.ajax({
+      method:"POST",
+      url:"/admin/support",
+      data:data
+    })
+  }
 })
 
-$("#newconbtn").click(function(){
-  const name=$("#newconname").val();
-  const phone=$("#newconphone").val();
-  const plan=$("#newconplan").val();
-  const address=$("#newconaddress").val();
-  const locality=$("#newconlocality").val();
-  const email=$("#newconemail").val();
-  const data={name:name,phone:phone,plan:plan,address:address,locality:locality,email:email}
-  console.log(data);
-  $.ajax({
-    method:"POST",
-    url:"/admin/request/new-connection",
-    data:data
-  })
+$(".newconform").on("submit",function(e){
+    if($(".reqfield").filter(function(){
+      return this.value==="";
+    }).length===0){
+      e.preventDefault();
+      $('#exampleModal').modal('show');
+      const name=$("#newconname").val();
+      const phone=$("#newconphone").val();
+      const plan=$("#newconplan").val();
+      const address=$("#newconaddress").val();
+      const locality=$("#newconlocality").val();
+      const email=$("#newconemail").val();
+      const data={name:name,phone:phone,plan:plan,address:address,locality:locality,email:email}
+      $.ajax({
+        method:"POST",
+        url:"/admin/request/new-connection",
+        data:data
+      })
+    }else{
+      e.preventDefault();
+    }
+
+    // console.log($( this ).serialize().length);
+    // if($(".reqfield").each().val!=0){
+    //   $('#exampleModal').modal('show');
+    //   const name=$("#newconname").val();
+    //   const phone=$("#newconphone").val();
+    //   const plan=$("#newconplan").val();
+    //   const address=$("#newconaddress").val();
+    //   const locality=$("#newconlocality").val();
+    //   const email=$("#newconemail").val();
+    //   const data={name:name,phone:phone,plan:plan,address:address,locality:locality,email:email}
+    //   $.ajax({
+    //     method:"POST",
+    //     url:"/admin/request/new-connection",
+    //     data:data
+    //   })
+    // }
 })
 
 $("#Viewticketsbtn").on("click",function(){
@@ -85,7 +109,7 @@ $("#Viewticketsbtn").on("click",function(){
   $("#pending").removeClass("active");
    $("#solved").removeClass("active");
    $("#all").addClass("active");
-  // if(isInside==true){
+
     if(count==0){
     $.get("/support",function(data){
       data.forEach(function(ticket){
@@ -123,8 +147,6 @@ $("#Viewticketsbtn").on("click",function(){
       })
       usertickets=$(".ticketcard");
       })
-      // isInside=false;
-  // }
      count+=+1;
     }
   })
@@ -395,12 +417,7 @@ $(".ticketuserinfo").click(function(){
     })
     count+=+1;
   }
- 
 })
 
-$(".ticketinfo").click(function(){
-  $(this).siblings().removeClass("active");
-  $(this).addClass("active");
-  $(".adminticketform").show("slow");
-  $(".personalsupportinfo").hide("slow");
-})
+
+
