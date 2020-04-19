@@ -21,7 +21,7 @@
                         <h5><%= ticket.type %></h5>
                     </div>
                     <div class="card-footer">
-                      <p><span class="createduser">By - <%=ticket.author.username %> </span><span class="status"><%= ticket.status %></span></p>
+                      <p><span class="createduser">By - <%=ticket.author.name %> </span><span class="status"><%= ticket.status %></span></p>
                       <span class="ml-3 time"><i class="fas fa-clock mr-1"></i>
                         <%var time= moment.tz(ticket.date,"Asia/Kolkata")%>
                         <% const difftime=moment(time).fromNow(); %>

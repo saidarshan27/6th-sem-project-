@@ -284,7 +284,7 @@ app.post("/admin/support",function(req,res){
 		date:moment().format(),
 		author: {
 			id:req.user._id,
-			username:req.user.username
+			username:req.user.name
 		}
 	}
 	Support.create(data,function(err,newsupport){
@@ -367,7 +367,7 @@ geocoder.geocode(geoadress,function(err,data){
 			lng:lng,
 			author:{
 				id:req.user._id,
-				username:req.user.username
+				username:req.user.name
 			},
 			date:date
 		}

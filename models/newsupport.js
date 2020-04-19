@@ -10,7 +10,7 @@ var supportSchema = mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         },
-        username: String
+        name: String
     }
 });
 
