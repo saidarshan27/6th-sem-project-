@@ -59,7 +59,7 @@ router.post('/due/payment',middleware.isLoggedIn,function(req, res) {
 
 //verifying and storing payment
 router.post('/due/payment/success', function(req, res) {
-const generated_signature = CryptoJS.HmacSHA256(req.body.razorpay_order_id + '|' + req.body.razorpay_payment_id,'D3f5jkUysLFWKL4ZOSFsMGK0');
+const generated_signature = CryptoJS.HmacSHA256(req.body.razorpay_order_id + '|' + req.body.razorpay_payment_id,process.env.razorpay_key_secret);
 	if (generated_signature == req.body.razorpay_signature) {
 		instance.payments.fetch(req.body.razorpay_payment_id).then((data) => {
             const amount=data.amount;
