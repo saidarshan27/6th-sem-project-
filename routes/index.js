@@ -160,8 +160,10 @@ router.get("/login",function(req,res){
 //handling login logic
 router.post("/login",passport.authenticate("local",{
 	successRedirect:"/home",
-	failureRedirect:"/login"
+	failureRedirect:"/login",
+	failureFlash:true
 }))
+
 //logout route
 router.get("/logout",function(req,res){
 	req.logOut();
