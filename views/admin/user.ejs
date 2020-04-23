@@ -1,4 +1,6 @@
 <%- include("../partials/adminheader.ejs"); %>
+<title>All Users</title>
+</head>
 
 <div class="container">
     <h1 class="text-center plansH">
@@ -10,7 +12,7 @@
     </h4>
   </div>
    
-  
+  <%- include("../partials/nothingtoshow.ejs"); %>
   <div class="row" >
     <div class="container" >
       <table class="table table-striped table-bordered" >
@@ -25,7 +27,7 @@
           <% users.forEach(function(user){ %>
             <tr>
                 <td><strong>
-                  <%= user.username %>
+                  <%= user.name %>
                 </strong></td>
               <td><%= user.plan %></td>
               <td class="d-flex justify-content-between"><%= user.email %><a href="/users/<%= user._id %>"><i class="fas fa-chevron-circle-right planarrow"></i></a></td>
@@ -35,5 +37,14 @@
       </table>
     </div>
   </div>
+
+  <script type="text/javascript">
+    $(function(){
+        const table=$(".table");
+        if(table.length==0){
+            $(".nothingtoshow").show();
+        }
+    })
+ </script>
 
 <%- include("../partials/footer.ejs"); %>

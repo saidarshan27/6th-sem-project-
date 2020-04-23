@@ -1,4 +1,6 @@
 <%- include("../partials/adminheader.ejs") %>
+<title>Support Tickets</title>
+</head>
 
 <h4 class="text-center plansH">Support tickets</h4>
 <hr id="hr">
@@ -6,15 +8,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div class="list-group mt-5">
-                <li class="list-group-item active" id="all">All</li>
-                <li class="list-group-item" id="pending">Pending</li>
-                <li class="list-group-item" id="solved">
+            <div class="list-group mt-5 adminfilter">
+                <li class="list-group-item active" id="adminall">All</li>
+                <li class="list-group-item" id="adminpending">Pending</li>
+                <li class="list-group-item" id="adminsolved">
                     Solved
                 </li>
             </div>
         </div>
         <div class="col-md-9 ticketcontainer1">
+        <%- include("../partials/nothingtoshow.ejs"); %>
         <% allsupport.forEach(function(ticket){ %>
                 <div class="card adminsupporticket ml-md-5">
                     <div class="card-header">
@@ -34,5 +37,15 @@
     </div>
     </div>
 </div>
+
+<script type="text/javascript">
+   $(function(){
+       const tickets=$(".adminsupporticket");
+       if(tickets.length==0){
+           $(".nothingtoshow").show();
+           $(".adminfilter").hide();
+       }
+   })
+</script>
 
 <%- include("../partials/footer.ejs"); %>

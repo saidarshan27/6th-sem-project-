@@ -145,4 +145,37 @@ $(function(){
             }
         }
     })
+    $(".resetform").validate({
+        rules:{
+            password:{
+                required:true,
+                strongPassword:true
+            },
+            confirm:{
+                required:true,
+                equalTo:"#password"
+            }
+        },
+        messages:{
+            password:{
+                required:"Please enter the new password"
+            },
+            confirm:{
+                required:"Please re-enter your password",
+                equalTo:"Please enter the same password"
+            }
+        }
+    })
+    $(".forgotform").validate({
+        rules:{
+            email:{
+                required:true
+            }
+        },
+        messages:{
+            email:{
+                required:"Please enter your email"
+            }
+        }
+    })
 })

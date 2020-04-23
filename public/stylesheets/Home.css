@@ -7,6 +7,7 @@
 
 
 
+
 .Bband {
 	color: red;
 	margin: 20px 20px;
@@ -95,19 +96,12 @@ h1 {
 	color: #ea1c2c;
 }
 .newconreqcontainer{
-    padding-top: 50px;
-	height: 90vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: baseline;
-	align-items: center;
+  padding-top: 50px;
 }
 .newconreqcontainer h3{
 	font-size: 1.35rem;
 }
 .newconcard{
-	width: 55em;
-	height: 8em;
 	margin-bottom: 30px;
 	border-left:5px solid #ea1c2c ;
 	padding: 10px 30px;
@@ -497,6 +491,9 @@ border: 1px solid rgba(128, 128, 128, 0.301);
 #mainNavbar .nav-link:hover {
 	color: #ea1c2c;
 }
+
+
+
 #mainNavbar{
 	background-color: white;
 }
@@ -660,4 +657,64 @@ input[type="text"]:focus {
 	font-family: 'Baloo 2', cursive;
 	font-weight: 700;
 	color:red
+}
+.billpaybtn{
+	position: relative;
+	top: -3em;
+    right: -19em;
+}
+#rzp-button1{
+ position: absolute;
+ bottom:4em
+}
+.rentalabel{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+ .svgp{
+	 font-weight: 400;
+	 color:rgba(255, 0, 0, 0.233)
+ }
+ .nothingtoshow{
+	 display:none;
+	 margin-top:150px;
+	 position: fixed;
+	 left:44em;
+ }
+.whatwedo{
+	background-color:rgba(192, 192, 192, 0.158);
+	padding: 2em;
+}
+.faq .card{
+	padding: 20px;
+	border: none;
+	filter: none;
+}
+
+.faqtitle{
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
+}
+
+
+.faq h5{
+	font-weight: 100;
+	letter-spacing: 1px;
+	word-spacing: 3px;
+}
+
+.faq .faq-answer{
+	text-transform: uppercase;
+	font-family: 'Baloo 2', cursive;
+	line-height: 2rem;
+}
+.pagefooter{
+	background-color: red;
+	color: white;
+	height: 9vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

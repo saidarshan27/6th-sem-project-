@@ -1,4 +1,6 @@
 <%- include("../partials/adminheader.ejs"); %>
+<title>User Details</title>
+</head>
 
 <h4 class="text-center plansH">User Details</h4>
 <hr id="hr">
@@ -14,27 +16,29 @@
         <div class="col-md-8 inputs ml-5">
                 <div class="form-group">
                     <label><strong>Name</strong></label>
-                    <input  class="form-control" type="text"  value="<%= user.name %>" name="name">
+                    <input  class="form-control" type="text"  value="<%= user.name %>" name="name"  disabled="true">
                 </div>
                 <div class="form-group">
                     <label><strong>Plan</strong></label>
-                    <input class="form-control" type="text"  value="<%= user.plan %>" name="phone">
+                    <input class="form-control" type="text"  value="<%= user.plan %>" name="phone"  disabled="true">
                 </div>
                 <div class="form-group">
                      <label><strong>E-mail ID</strong></label>
-                      <input class="form-control" type="text"  value="<%= user.email %>" name="plan">
+                      <input class="form-control" type="text"  value="<%= user.email %>" name="plan"  disabled="true">
                 </div>
                 <div class="form-group">
                     <label><strong>Address</strong></label>
-                    <textarea class="form-control" name="address" style="width: 40.5em;"><%= user.address %></textarea>
+                    <textarea class="form-control" name="address" style="width: 40.5em;"  disabled="true"><%= user.address %></textarea>
                 </div>
                 <div class="form-group">
                   <label><strong>Rental Due</strong></label>
-                  <input class="form-control" type="text"  value="<%= user.rental %>" name="locality">
+                  <input class="form-control" type="text"  value="<%= user.rental.due %>" name="locality"  disabled="true"> 
               </div>
                 <div>
                     <label><strong>Data Remaining</strong></label>
-                    <input class="form-control" type="text"  value="<%= user.data.total %>" name="email">
+                    <% const total=parseInt(user.data.total) %>
+                    <% const used=parseFloat(user.data.used) %>
+                    <input class="form-control" type="text"  value="<%= (total-used)  %> GB" name="email" disabled="true">
                 </div> 
         </div>
 </div>

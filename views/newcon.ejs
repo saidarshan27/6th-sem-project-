@@ -1,4 +1,6 @@
 <%- include("partials/header.ejs"); %>
+<title>New Connection</title>
+</head>
 
 <h4 class="text-center plansH">New connection</h4>
 <hr id="hr">
@@ -45,7 +47,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Router Request</h5>
+        <h5 class="modal-title" id="exampleModalLabel">New Connection Request</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -61,7 +63,32 @@
 </div>
 </form>
 
+<div class="modal fade" id="exampleModalCenter" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Connection Already exists.</h5>
+      </div>
+      <div class="modal-body">
+      <i class="fas fa-times-circle mr-2 " style="color:red"></i>You already have a active connection.
+      <div style="margin-left: 1.5em;">
+        Sorry at the moment,You cannot apply for a new connection.
+      </div>
+    </div>
+      <div class="modal-footer">
+        <a href="/home" type="button" class="btn btn-outline-danger">OK</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+  $(function(){
+     const status = <%= currentUser.isConUser %>;
+     if(status==true){
+       $("#exampleModalCenter").modal("show");
+     }
+  })
   function activatePlacesSearch(){
     var input=document.getElementById("newconlocality");
     var autocomplete=new google.maps.places.Autocomplete(input);

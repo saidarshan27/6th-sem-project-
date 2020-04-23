@@ -1,6 +1,8 @@
 <%- include("../partials/adminheader.ejs"); %>
+<title>New Connection Request</title>
+</head>
 
-<h4 class="text-center plansH">New connection Request</h4>
+<h4 class="text-center plansH">New Connection Request</h4>
 <hr id="hr">
 
 <div class="container">
@@ -61,7 +63,7 @@
       });
       var contentString = `
         <strong><%= newcon.name %><br/>
-        <%= newcon.location %></strong>
+        <%= newcon.address%></strong>
       `
       var infowindow = new google.maps.InfoWindow({
         content: contentString

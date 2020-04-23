@@ -1,5 +1,6 @@
 <%- include("../partials/adminheader.ejs") %>
-
+<title>Support Ticket</title>
+</head>
 
 
 <h4 class="text-center plansH">Support ticket</h4>
@@ -21,26 +22,28 @@
         <div class="col-md-6 realticket">
             <form action="/admin/support/<%=ticket._id %>?_method=PUT" method="POST" url="/user/<%= ticket.author.id %>" class="adminticketform"> 
             <div>
-                <label>Type</label>
+                <label><strong>Type</strong></label>
             </div>
             <div>
                 <label class="form-control"><%= ticket.type %></label>
             </div>
             <div>
-                <label>Comments</label>
+                <label><strong>Comments</strong></label>
             </div>
             <div>
                 <label class="form-control"><%= ticket.comment %></label>
             </div>
             <div>
-                <label>Created On</label>
+                <label><strong>Created On</strong></label>
             </div>
             <div>
                 <label class="form-control"><%= moment(ticket.date).format("DD.MM.YYYY HH:mm") %></label>
             </div>
-            <div class="text-center">
-                <button class="btn btn-sm btn-outline-success"><i class="fas fa-check"></i> Solved</button>
-            </div>
+            <% if (ticket.status!="Solved"){ %>
+                <div class="text-center">
+                    <button class="btn btn-sm btn-outline-success"><i class="fas fa-check"></i> Solved</button>
+                </div>
+            <% } %>
         </form>
         </div>
     </div>

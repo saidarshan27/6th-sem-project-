@@ -1,5 +1,6 @@
 <%- include("partials/header.ejs"); %>
-
+<title>Support</title>
+</head>
 
   <h4 class="plansH text-center">
     Support
@@ -16,6 +17,7 @@
       </div>
     </div>
     <div class="col-md-6 ticketcontainer">
+     <%- include("partials/nothingtoshow.ejs") %>
       <form action="/admin/support" method="POST" class="supportform" style="width:50rem;height:70vh" > 
         <div class="form-group ml-3">
           <label class="ml-2.5"><strong>Select a issue</strong></label>
@@ -52,7 +54,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Router Request</h5>
+        <h5 class="modal-title" id="exampleModalLabel">New Ticket Raised</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

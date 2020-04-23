@@ -1,4 +1,6 @@
 <%- include('partials/header.ejs'); -%>
+<title>Home</title>
+</head>
 <!--sliders-->
 
 
@@ -135,8 +137,87 @@
             <div class="text-center mt-3"><a href="/routers" class="btn btn-danger">View all routers</a></div>
 </div>
 
+<section class="whatwedo mt-4">
+  <h4 class="text-center mb-2" style="letter-spacing: 1px;font-weight: 400;text-transform: uppercase">What Service Do We Offer ?</h4>
+  <hr id="hr" class="mb-3">
+  <p class="text-center"><strong>We offer 3 kinds of services</strong></p>
+  <p ><h4 class="text-center">GOOD-CHEAP-FAST</h4></p>
+  <div class="container" style="max-width: 1800px;">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <%- include("partials/goodsvg.ejs") %>
+            <h4 style="color: rgb(108, 101, 124);">GOOD AND CHEAP WON'T BE FAST</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <%- include("partials/fastsvg.ejs"); %>
+           <h4 style="color: rgb(108, 101, 124);">FAST AND GOOD WON'T BE CHEAP</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <%- include("partials/cheapsvg.ejs"); %>
+            <h4 style="color: rgb(108, 101, 124);">CHEAP AND FAST WON'T BE GOOD</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<div class="container mt-5 faq">
+  <h4>
+    FAQ
+  </h4>
+  <div class="card">
+    <div class="card-title faqtitle">
+        <h5>How to apply for a connection ?</h5>
+        <i class="fas fa-plus faq-plus"></i>
+        <i class="fa fa-minus faq-minus" style="display: none;"></i>
+    </div>
+    <div class="faq-answer" style="display: none;">
+      <p>Please sign-up with your name and email id .After signing up please navigate to "New Connection" and fill in all the details,and our team will get in contact with you</p>
+    </div>
+  </div> <div class="card">
+    <div class="card-title faqtitle">
+        <h5>How to pay monthly due ?</h5>
+        <i class="fas fa-plus faq-plus"></i>
+        <i class="fa fa-minus faq-minus" style="display: none;"></i>
+    </div>
+    <div class="faq-answer" style="display: none;">
+      <p>Please navigate to your profile by clicking on your name in the right-side top corner.If your monthly due isn't cleared.You can view your monthly due inside your profile.Payment can be made through our payment partner RazorPay with thier multi-featured payment methods</p>
+    </div>
+  </div> <div class="card">
+    <div class="card-title faqtitle">
+        <h5>How to apply for two connections ?</h5>
+        <i class="fas fa-plus faq-plus"></i>
+        <i class="fa fa-minus faq-minus" style="display: none;"></i>
+    </div>
+    <div class="faq-answer" style="display: none;">
+      <p>At the moment we only provide one connection per user.</p>
+    </div>
+  </div> <div class="card">
+    <div class="card-title faqtitle">
+        <h5>How to raise a support ticket ?</h5>
+        <i class="fas fa-plus faq-plus"></i>
+        <i class="fa fa-minus faq-minus" style="display: none;"></i>
+    </div>
+    <div class="faq-answer" style="display: none;">
+      <p>Navigate to 'support' in the navbar and select the issue and please provide extra information in the description box.</p>
+    </div>
+  </div>
+</div>
 
+<footer class="pagefooter">
+  <i class="far fa-copyright mr-2"></i>Created by SAI DARSHAN.
+</footer>
 
 
 <%- include('partials/footer.ejs'); -%>

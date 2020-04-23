@@ -1,22 +1,43 @@
 <html>
 
 <head>
-  <title>Home</title>
+  <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" type="text/css" href="/stylesheets/lib/bootstrap-4.4.1-dist/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="/stylesheets/Home.css">
   <link rel="stylesheet" type="text/css" href="/stylesheets/lib/fontawesome-free-5.13.0-web/css/all.min.css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet"> 
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
-  <script defer src="/scripts/lib/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+  <script async src="/scripts/lib/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
   <script defer src="/scripts/lib/jquery.validate.min.js" crossorigin="anonymous"></script>
-  <script defer src="/scripts/lib/additional-methods.min.js" crossorigin="anonymous"></script>
+  <script  defer src="/scripts/lib/additional-methods.min.js" crossorigin="anonymous"></script>
+  <script  defer src="/stylesheets/lib/bootstrap-4.4.1-dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
   <script defer type="text/javascript" src="/scripts/validations.js"></script>
-  <script defer src="/stylesheets/lib/bootstrap-4.4.1-dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
   <script defer src="/scripts/lib/ejs.min.js"></script>
   <script defer type="text/javascript" src="/scripts/main.js"></script> 
-</head>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <% if(success && success.length > 0) { %>
+    <div class="alert alert-success text-center alert-dismissible fade show" role="alert" style="height: 50px;">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <%= success %>
+    </div>
+  <% }else if(error && error.length > 0){ %>
+    <div class="alert alert-danger text-center alert-dismissible fade show" role="alert" style="height: 50px;">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <%= error %>
+    </div>
+  <% } %>
+
+
+
+  
 
 <body>
+  
   <nav id="mainNavbar" class="navbar navbar sticky-top navbar-expand-lg navbar-light px-5 ">
     <a class="navbar-brand" href="/home"><img src="/images/Capture.jpg"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -56,3 +77,4 @@
       <% } %>
     </div>
   </nav>
+  

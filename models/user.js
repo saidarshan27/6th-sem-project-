@@ -1,6 +1,6 @@
 const mongoose =require("mongoose");
 const passportLocalMongoose=require("passport-local-mongoose");
-var findOrCreate = require('mongoose-findorcreate');
+
 
 
 const UserSchema= new mongoose.Schema({
@@ -16,9 +16,12 @@ const UserSchema= new mongoose.Schema({
     profilepic:{},
     data:{
         total:String,
-        used:String
+        used:{}
     },
-    rental:{},
+    rental:{
+        total:Number,
+        due:Number
+    },
     lat:{},
     lng:{},
     resetPasswordToken: String,

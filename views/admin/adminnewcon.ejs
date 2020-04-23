@@ -1,24 +1,43 @@
 <%- include("../partials/adminheader.ejs") %>
+<title>New Connection Requests</title>
+</head>
 
 <h4 class="text-center plansH">New Connection requests</h4>
 <hr id="hr">
-<div class="newconreqcontainer">
-    <% newcons.forEach(function(newcon){ %>
-        <div class="card newconcard">
-        <div class="card-title">
-         <h3>New connection request</h3>
+<div class="container newconreqcontainer">
+    <div class="row">
+        <div class="col-md-12">
+          <%- include("../partials/nothingtoshow.ejs"); %>
+          <% newcons.forEach(function(newcon){ %>
+            <div class="card newconcard">
+            <div class="card-title">
+             <h3>New connection request</h3>
+            </div>
+            <div class="card-footer newconfooter">
+                <p class="mb-3">By - <%=newcon.author.name %> <span class="ml-3"> Phone - <%= newcon.phone %></span></p>
+                <span class="ml-3 time"><i class="fas fa-clock mr-1"></i>
+                    <%var time= moment.tz(newcon.date,"Asia/Kolkata")%>
+                    <% const difftime=moment(time).fromNow(); %>
+                    <%= difftime %>
+                </span>
+                <span class="viewbtn"><a class="btn btn-outline-danger " href="/admin/request/new-connection/<%= newcon._id %>">View</a></span>
+            </div>
+            </div>
+       <% }) %>
         </div>
-        <div class="card-footer newconfooter">
-            <p class="mb-3">By - <%=newcon.author.name %> <span class="ml-3"> Phone - <%= newcon.phone %></span></p>
-            <span class="ml-3 time"><i class="fas fa-clock mr-1"></i>
-                <%var time= moment.tz(newcon.date,"Asia/Kolkata")%>
-                <% const difftime=moment(time).fromNow(); %>
-                <%= difftime %>
-            </span>
-            <span class="viewbtn"><a class="btn btn-outline-danger " href="/admin/request/new-connection/<%= newcon._id %>">View</a></span>
-        </div>
-        </div>
-   <% }) %>
+    </div>
 </div>
+
+
+
+<script type="text/javascript">
+    $(function(){
+        const tickets=$(".newconcard");
+        if(tickets.length==0){
+            $(".nothingtoshow").show();
+        }
+    })
+ </script>
+
 
 <%- include("../partials/footer.ejs"); %>

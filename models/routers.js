@@ -2,7 +2,7 @@ const mongoose=require("mongoose");
 
 const routerSchema= new mongoose.Schema({
     name:String,
-    price:String,
+    price:Number,
     image:String
 });
 
