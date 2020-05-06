@@ -32,7 +32,6 @@ $('#onemonth').on('click', function() {
 	$('#buy6').addClass('displaymonth');
 });
 
-
 $('.supportform').on('submit', function(e) {
 	e.preventDefault();
 	if ($(this).serialize().length > 15) {
@@ -99,14 +98,14 @@ $('#Viewticketsbtn').on('click', function() {
 	$('#pending').removeClass('active');
 	$('#solved').removeClass('active');
 	$('#all').addClass('active');
-		$.get('/support', function(data) {
-			console.log(data);
-			data.forEach(function(ticket) {
-				const time = moment.tz(ticket.date, 'Asia/Kolkata');
-				const difftime = moment(time).fromNow();
-				if(count==0){
-					$('.ticketcontainer').append(
-						`
+	$.get('/support', function(data) {
+		console.log(data);
+		data.forEach(function(ticket) {
+			const time = moment.tz(ticket.date, 'Asia/Kolkata');
+			const difftime = moment(time).fromNow();
+			if (count == 0) {
+				$('.ticketcontainer').append(
+					`
 							<div class="card ticketcard" style="width: 90%;">
 							<div class="card-header ticketheader">
 							 <h5>${ticket.type}</h5>
@@ -124,33 +123,31 @@ $('#Viewticketsbtn').on('click', function() {
 							</div>
 							</div>
 							`
-					);
-				}
-				$('.status').each(function(index) {
-					if ($(this).text() == 'Pending') {
-						$(this).addClass('colorP');
-						$(this).parents('.ticketcard').addClass('pending');
-					} else {
-						$(this).addClass('colorS');
-						$(this).parents('.ticketcard').addClass('solved');
-					}
-				});
-			});
-			count += +1;
-			usertickets = $('.ticketcard');
-			if(usertickets.length==0){
-				$('.userticketfilter').hide();
-				$(".nothingtoshow").show("slow");
-			}else{
-				$('.userticketfilter').show('slow');
+				);
 			}
+			$('.status').each(function(index) {
+				if ($(this).text() == 'Pending') {
+					$(this).addClass('colorP');
+					$(this).parents('.ticketcard').addClass('pending');
+				} else {
+					$(this).addClass('colorS');
+					$(this).parents('.ticketcard').addClass('solved');
+				}
+			});
 		});
-
+		count += +1;
+		usertickets = $('.ticketcard');
+		if (usertickets.length == 0) {
+			$('.userticketfilter').hide();
+			$('.nothingtoshow').show('slow');
+		} else {
+			$('.userticketfilter').show('slow');
+		}
+	});
 });
 
-
 $('#Raiseticketbtn').on('click', function() {
-	$(".nothingtoshow").hide("slow");
+	$('.nothingtoshow').hide('slow');
 	$(this).addClass('active');
 	$(this).siblings('.active').removeClass('active');
 	$('.ticketcard').hide('slow');
@@ -222,76 +219,76 @@ $('.ticketcontainer').on('click', '.viewticketbtn', function(e) {
 });
 
 $('#pending').on('click', function() {
-	$(".nothingtoshow").hide("slow");
+	$('.nothingtoshow').hide('slow');
 	$('#all').removeClass('active');
 	$('#solved').removeClass('active');
 	$(this).addClass('active');
-	const userPendingTickets=usertickets.filter('.pending');
-	if(userPendingTickets.length==0){
-		$(".nothingtoshow").show("slow");
-	}else{
-	 userPendingTickets.show('slow');
+	const userPendingTickets = usertickets.filter('.pending');
+	if (userPendingTickets.length == 0) {
+		$('.nothingtoshow').show('slow');
+	} else {
+		userPendingTickets.show('slow');
 	}
 	usertickets.not('.pending').hide('slow');
 });
 
-$("#adminpending").on("click",function(){
-	$(".nothingtoshow").hide("slow");
+$('#adminpending').on('click', function() {
+	$('.nothingtoshow').hide('slow');
 	$('#adminall').removeClass('active');
 	$('#adminsolved').removeClass('active');
 	$(this).addClass('active');
-	 const adminpending=tickets.filter('.pending');
-   if(adminpending.length == 0){
-		 $(".nothingtoshow").show("slow");
-	 }
-		tickets.not('.pending').hide();
-		tickets.filter('.pending').show();
+	const adminpending = tickets.filter('.pending');
+	if (adminpending.length == 0) {
+		$('.nothingtoshow').show('slow');
+	}
+	tickets.not('.pending').hide();
+	tickets.filter('.pending').show();
+});
 
-})
-
-$("#adminsolved").on("click",function(){
-	$(".nothingtoshow").hide("slow");
+$('#adminsolved').on('click', function() {
+	$('.nothingtoshow').hide('slow');
 	$('#adminall').removeClass('active');
 	$('#adminpending').removeClass('active');
 	$(this).addClass('active');
-	const adminsolved=tickets.not('.pending');
-	if(adminsolved.length==0){
-		$(".nothingtoshow").show("slow");
+	const adminsolved = tickets.not('.pending');
+	if (adminsolved.length == 0) {
+		$('.nothingtoshow').show('slow');
 	}
-	tickets.filter('.pending').hide("slow");
-	tickets.not('.pending').show("slow");
-})
+	tickets.filter('.pending').hide('slow');
+	tickets.not('.pending').show('slow');
+});
 
-$("#adminall").on("click",function(){
-	$(".nothingtoshow").hide("slow");
+$('#adminall').on('click', function() {
+	$('.nothingtoshow').hide('slow');
 	$('#adminsolved').removeClass('active');
 	$('#adminpending').removeClass('active');
 	$(this).addClass('active');
 	tickets.show('slow');
-})
+});
 
 $('#solved').on('click', function() {
 	$('#pending').removeClass('active');
 	$('#all').removeClass('active');
 	$(this).addClass('active');
-	const adminsolvedtickets=	tickets.not('.pending');
-	if(adminsolvedtickets.length==0){
-		$(".nothingtoshow").show("slow");
-	}else{
-		adminsolvedtickets.show("slow");
-		tickets.filter('.pending').hide("slow");
+	const adminsolvedtickets = tickets.not('.pending');
+	if (adminsolvedtickets.length == 0) {
+		$('.nothingtoshow').show('slow');
+	} else {
+		adminsolvedtickets.show('slow');
+		tickets.filter('.pending').hide('slow');
 	}
-	const userSolvedTickets=	usertickets.not('.pending');
-	if(userSolvedTickets.length==0){
-		$(".nothingtoshow").show("slow");
-	}else{
+	const userSolvedTickets = usertickets.not('.pending');
+	if (userSolvedTickets.length == 0) {
+		$('.nothingtoshow').show('slow');
+	} else {
 		userSolvedTickets.show('slow');
-		$(".nothingtoshow").hide();
+		$('.nothingtoshow').hide();
 	}
 	usertickets.filter('.pending').hide('slow');
 });
 
 $('#all').on('click', function() {
+	$('.nothingtoshow').hide();
 	$('#pending').removeClass('active');
 	$('#solved').removeClass('active');
 	$('#all').addClass('active');
@@ -318,11 +315,11 @@ $('.ticketcontainer').on('click', '.deletelbl', function() {
 	$.ajax({
 		method: 'DELETE',
 		url: url,
-		success:function(data){
+		success: function(data) {
 			parent.remove();
-			const parentafter=$('.ticketcard');
-      if(parentafter.length==0){
-				$(".nothingtoshow").show("slow");
+			const parentafter = $('.ticketcard');
+			if (parentafter.length == 0) {
+				$('.nothingtoshow').show('slow');
 			}
 		}
 	});
@@ -473,14 +470,14 @@ $('.ticketinfo').click(function() {
 	$('.personalsupportinfo').hide('slow');
 });
 
-$(".faq-plus").click(function(){
-	$(this).hide();
-	$(this).siblings(".faq-minus").show("slow");
-	$(this).parents().siblings().fadeIn("slow");
-})
-
-$(".faq-minus").click(function(){
-	$(this).hide();
-	$(this).siblings(".faq-plus").show("slow");
-	$(this).parents(".faqtitle").siblings(".faq-answer").fadeOut("slow");
-})
+$('.faq-open').click(function() {
+	if ($(this).parent('.faqtitle').siblings('.faq-answer').hasClass('opened')) {
+		$(this).parent('.faqtitle').siblings('.faq-answer').removeClass('opened');
+		$(this).parent('.faqtitle').siblings('.faq-answer').fadeOut('slow');
+		$(this).html(`<i class="fas fa-plus">`);
+	} else {
+		$(this).html(`<i class="fas fa-minus">`);
+		$(this).parent('.faqtitle').siblings('.faq-answer').fadeIn('slow');
+		$(this).parent('.faqtitle').siblings('.faq-answer').addClass('opened');
+	}
+});
