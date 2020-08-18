@@ -115,7 +115,11 @@ router.post("/register",function(req,res,next){
 				  'username:'+user.username+ '\n\n' 
 			  };
 			  smtpTransport.sendMail(mailOptions, function(err) {
-				console.log('mail sent');
+				if(err){
+					console.log(err);
+				}else{
+					console.log('mail sent');
+				}
 			  });
 		}
 	})
