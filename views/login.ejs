@@ -2,28 +2,30 @@
 <title>Login</title>
 </head>
 
-<div class="container loginform">
-    <div class="form-group">
-        <h4 class="plansH">Login</h4>
+<div class="container" style="margin-top: 10rem;">
+    <div class="row justify-content-center">
+        <form action="/login" method="POST" class="realoginform col-md-10" >
+            <h4 class="plansH text-center mb-3">Login</h4>
+            <div class="form-group col-md-12">
+                <input  class="form-control username" type="text" name="username" placeholder="Username" autocomplete="off">
+            </div>
+            <div class="form-group col-md-12">
+                <input class="form-control loginpassword" type="password" name="password" placeholder="Password">
+            </div>
+            <div class="form-group col-md-12">
+                <input type="submit" class="btn btn-outline-danger btn-block" value="Login"></button>
+            </div>
+            <div class="d-flex justify-content-between mt-3 forgot">
+                <a href="/forgot">Forgot Password ?</a>
+                <a href="/register">Don't have a account yet?</a>
+            </div>
+            <hr>
+            <label class="text-center loginor">OR</label>
+            <div class="fb mt-2">
+              <a href="/auth/facebook" class="btn btn-block btn-primary" style="font-family: 'Baloo 2', cursive;font-weight: 700"><i class="fab fa-facebook-square mr-2"></i>Log in with Facebook</a>
+            </div>
+        </form>
     </div>
-    <form action="/login" method="POST" style="width:30rem;height:70vh" class="realoginform" >
-        <div class="form-group">
-            <input  class="form-control username" type="text" name="username" placeholder="Username" autocomplete="off">
-        </div>
-        <div class="form-group">
-            <input class="form-control loginpassword" type="password" name="password" placeholder="Password">
-        </div>
-        <input type="submit" class="btn btn-outline-danger btn-block" value="Login"></button>
-        <div class="d-flex justify-content-between mt-3 forgot">
-            <a href="/forgot">Forgot Password ?</a>
-            <a href="/register">Don't have a account yet?</a>
-        </div>
-        <hr>
-        <label class="text-center loginor">OR</label>
-        <div class="fb mt-2">
-          <a href="/auth/facebook" class="btn btn-block btn-primary" style="font-family: 'Baloo 2', cursive;font-weight: 700"><i class="fab fa-facebook-square mr-2"></i>Log in with Facebook</a>
-        </div>
-    </form>
 </div>
 
 <%- include("partials/footer.ejs"); %>

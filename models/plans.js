@@ -8,4 +8,6 @@ const PlansSchema = new mongoose.Schema({
 	rental: String
 });
 
-module.exports = mongoose.model('Plan', PlansSchema);
+const Plan = mongoose.model('Plan', PlansSchema);
+
+module.exports = Plan;

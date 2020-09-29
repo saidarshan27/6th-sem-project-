@@ -6,4 +6,6 @@ const routerSchema= new mongoose.Schema({
     image:String
 });
 
-module.exports = mongoose.model('Router', routerSchema);
+const Router =  mongoose.model('Router', routerSchema);
+
+module.exports = Router;

@@ -359,10 +359,12 @@ a:hover {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+.realoginform{
 	background-color: rgba(243, 243, 243, 0.329);
-	width: 38em;
 	border-radius: 3%;
 	border: 1px solid rgb(243, 243, 243);
+	padding: 2rem;
 }
 .forgot {
 	font-size: 1rem;
@@ -725,14 +727,14 @@ input[type="text"]:focus {
 	transition: all 0.5 ease-in-out;
 }
 /* media queries */
-@media (max-width: 1800px) {
+/* @media (max-width: 1800px) {
 	.goodsvg,
 	.fastsvg,
 	.cheapsvg {
 		width: 100%;
 		height: 70%;
 	}
-}
+} */
 @media (max-width: 768px) {
 	.faq h5 {
 		font-size: 1rem;
@@ -749,5 +751,13 @@ input[type="text"]:focus {
 		padding: 0.35rem;
 		padding-right: 0.7rem;
 		font-size: 0.8rem;
+	}
+}
+@media(max-width:600px){
+	#planTable table{
+		font-size: .8rem;
+	}
+	#planTable i{
+		font-size: .8rem;
 	}
 }

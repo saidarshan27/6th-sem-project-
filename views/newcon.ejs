@@ -82,6 +82,9 @@
   </div>
 </div>
 
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD27OCfERJWk0dd1ziqQ05mu0eHdvuickI&libraries=places&callback=activatePlacesSearch"></script>
+<%- include("partials/footer.ejs"); %>
+
 <script>
   $(function(){
      const status = <%= currentUser.isConUser %>;
@@ -94,5 +97,3 @@
     var autocomplete=new google.maps.places.Autocomplete(input);
   }
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD27OCfERJWk0dd1ziqQ05mu0eHdvuickI&libraries=places&callback=activatePlacesSearch"></script>
-<%- include("partials/footer.ejs"); %>
