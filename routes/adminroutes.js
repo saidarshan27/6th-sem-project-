@@ -24,6 +24,11 @@ const express = require("express");
 //==========================
 
 //dashboard getting all counts
+router.get("/adminlogin",function(req,res){
+	res.render("admin/adminLogin");
+})
+
+
 router.get("/admin",function(req,res){
 	Support.countDocuments({},function(err,supportcount){
 		if(err){
