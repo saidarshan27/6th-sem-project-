@@ -28,10 +28,10 @@
   <script>
     var orderid;
     var amount;
-    var email =<% - JSON.stringify(currentUser.email) %>
-    var name =<% - JSON.stringify(currentUser.name) %>
-    var phone =<% - JSON.stringify(currentUser.phone) %>
-    const price =<% - JSON.stringify(parseInt(router.price)) %>
+    var email =<%- JSON.stringify(currentUser.email) %>
+    var name =<%- JSON.stringify(currentUser.name) %>
+    var phone =<%- JSON.stringify(currentUser.phone) %>
+    const price =<%- JSON.stringify(parseInt(router.price)) %>
     const dataprice = { 'price': price }
     document.getElementById('rzp-button1').onclick = function (e) {
       e.preventDefault();
