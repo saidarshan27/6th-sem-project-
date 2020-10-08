@@ -17,35 +17,38 @@
             </div>
         </div>
         <div class="col-md-9 ticketcontainer1">
-        <%- include("../partials/nothingtoshow.ejs"); %>
-        <% allsupport.forEach(function(ticket){ %>
-                <div class="card adminsupporticket ml-md-5">
-                    <div class="card-header">
-                        <h5><%= ticket.type %></h5>
-                    </div>
-                    <div class="card-footer">
-                      <p><span class="createduser">By - <%=ticket.author.name %> </span><span class="status"><%= ticket.status %></span></p>
-                      <span class="ml-3 time"><i class="fas fa-clock mr-1"></i>
+            <%- include("../partials/nothingtoshow.ejs"); %>
+            <% allsupport.forEach(function(ticket){ %>
+            <div class="card adminsupporticket ml-md-5">
+                <div class="card-header">
+                    <h5><%= ticket.type %></h5>
+                </div>
+                <div class="card-footer">
+                    <p><span class="createduser">By - <%=ticket.author.name %> </span><span
+                            class="status"><%= ticket.status %></span></p>
+                    <span class="ml-3 time"><i class="fas fa-clock mr-1"></i>
                         <%var time= moment.tz(ticket.date,"Asia/Kolkata")%>
                         <% const difftime=moment(time).fromNow(); %>
                         <%= difftime %>
                     </span>
-                      <span><a class="btn btn-outline-danger btn-sm" href="/admin/support/<%= ticket.id %>">View</a></span>
-                    </div>
+                    <span><a class="btn btn-outline-danger btn-sm"
+                            href="/admin/support/<%= ticket.id %>">View</a></span>
                 </div>
-       <% }) %>
-    </div>
+            </div>
+            <% }) %>
+        </div>
     </div>
 </div>
 
-<script type="text/javascript">
-   $(function(){
-       const tickets=$(".adminsupporticket");
-       if(tickets.length==0){
-           $(".nothingtoshow").show();
-           $(".adminfilter").hide();
-       }
-   })
-</script>
 
 <%- include("../partials/footer.ejs"); %>
+
+<script type="text/javascript">
+    $(function () {
+        const tickets = $(".adminsupporticket");
+        if (tickets.length == 0) {
+            $(".nothingtoshow").show();
+            $(".adminfilter").hide();
+        }
+    })
+</script>

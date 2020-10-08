@@ -6,44 +6,51 @@
 <hr id="hr">
 
 <div class="container newconcontainer">
-    <form action="/admin/request/new-connection" method="POST" class="mt-1 newconform" style="width:50rem;height:75vh" > 
-        <div class="form-group">
-            <label><strong>Name</strong></label>
-            <input class="form-control" type="text" name="newcon[name]" placeholder="Enter your name" id="newconname" value="<%= currentUser.name %>">       
-          </div>
-        <div class="form-group">
-           <label><strong>Phone Number</strong></label>
-            <input class="form-control reqfield" type="tel" name="newcon[phone]" placeholder="Enter your 10-digit phone number" id="newconphone" maxlength="10">
-          </div>
-        <div class="form-group">
-          <label><strong>Plan</strong></label>
-            <select class="form-control reqfield" name="newcon[plan]" style="color: #6c757d;" id="newconplan">
-                <option value="">Pick a plan</option>
-                <option value="ACT Swift">ACT Swift</option>
-                <option value="ACT Rapid Plus">ACT Rapid Plus</option>
-                <option value="ACT Storm">ACT Storm</option>
-                <option value="ACT Lighting">ACT Lighting</option>
-              </select>
-        </div>
-        <div  class="form-group">
-          <label><strong>Address</strong></label>
-            <input class="form-control reqfield" type="text" name="newcon[address]" placeholder="Address lane" id="newconaddress">
-          </div>
-        <div class="form-group">
-          <label><strong>Locality</strong></label>
-          <input class="form-control reqfield" type="text" name="newcon[locality]" placeholder="Locality" id="newconlocality">
-        </div>
-        <div lass="form-group">
-          <label><strong>E-mail address</strong></label>  
-          <input class="form-control" type="email" name="newcon[email]" placeholder="johdoe@example.com" id="newconemail" value="<%= currentUser.email %>">
-          </div> 
-        <div class="text-center">
-          <input type="submit" class="btn btn-outline-danger mt-3" value="Submit">
-        </div>  
-      </form>
+  <form action="/admin/request/new-connection" method="POST" class="mt-1 newconform" style="width:50rem;height:75vh">
+    <div class="form-group">
+      <label><strong>Name</strong></label>
+      <input class="form-control" type="text" name="newcon[name]" placeholder="Enter your name" id="newconname"
+        value="<%= currentUser.name %>">
+    </div>
+    <div class="form-group">
+      <label><strong>Phone Number</strong></label>
+      <input class="form-control reqfield" type="tel" name="newcon[phone]"
+        placeholder="Enter your 10-digit phone number" id="newconphone" maxlength="10">
+    </div>
+    <div class="form-group">
+      <label><strong>Plan</strong></label>
+      <select class="form-control reqfield" name="newcon[plan]" style="color: #6c757d;" id="newconplan">
+        <option value="">Pick a plan</option>
+        <option value="ABP Blaze">ABP Blaze</option>
+        <option value="ABP Swift">ABP Swift</option>
+        <option value="ABP Rapid Plus">ABP Rapid Plus</option>
+        <option value="ABP Storm<">ABP Storm</option>
+        <option value="ABP Lighting">ABP Lighting</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label><strong>Address</strong></label>
+      <input class="form-control reqfield" type="text" name="newcon[address]" placeholder="Address lane"
+        id="newconaddress">
+    </div>
+    <div class="form-group">
+      <label><strong>Locality</strong></label>
+      <input class="form-control reqfield" type="text" name="newcon[locality]" placeholder="Locality"
+        id="newconlocality">
+    </div>
+    <div lass="form-group">
+      <label><strong>E-mail address</strong></label>
+      <input class="form-control" type="email" name="newcon[email]" placeholder="johdoe@example.com" id="newconemail"
+        value="<%= currentUser.email %>">
+    </div>
+    <div class="text-center">
+      <input type="submit" class="btn btn-outline-danger mt-3" value="Submit">
+    </div>
+  </form>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -53,10 +60,10 @@
         </button>
       </div>
       <div class="modal-body">
-         Request for new connection received,Our team will get in contact with you very soon.
+        Request for new connection received,Our team will get in contact with you very soon.
       </div>
       <div class="modal-footer">
-          <a href="/home" class="btn btn-outline-danger">OK</a>
+        <a href="/home" class="btn btn-outline-danger">OK</a>
       </div>
     </div>
   </div>
@@ -70,11 +77,11 @@
         <h5 class="modal-title" id="exampleModalLongTitle">Connection Already exists.</h5>
       </div>
       <div class="modal-body">
-      <i class="fas fa-times-circle mr-2 " style="color:red"></i>You already have a active connection.
-      <div style="margin-left: 1.5em;">
-        Sorry at the moment,You cannot apply for a new connection.
+        <i class="fas fa-times-circle mr-2 " style="color:red"></i>You already have a active connection.
+        <div style="margin-left: 1.5em;">
+          Sorry at the moment,You cannot apply for a new connection.
+        </div>
       </div>
-    </div>
       <div class="modal-footer">
         <a href="/home" type="button" class="btn btn-outline-danger">OK</a>
       </div>
@@ -82,18 +89,19 @@
   </div>
 </div>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD27OCfERJWk0dd1ziqQ05mu0eHdvuickI&libraries=places&callback=activatePlacesSearch"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD27OCfERJWk0dd1ziqQ05mu0eHdvuickI&libraries=places&callback=activatePlacesSearch"></script>
 <%- include("partials/footer.ejs"); %>
 
 <script>
-  $(function(){
-     const status = <%= currentUser.isConUser %>;
-     if(status==true){
-       $("#exampleModalCenter").modal("show");
-     }
+  $(function () {
+    const status = <%= currentUser.isConUser %>;
+    if (status == true) {
+      $("#exampleModalCenter").modal("show");
+    }
   })
-  function activatePlacesSearch(){
-    var input=document.getElementById("newconlocality");
-    var autocomplete=new google.maps.places.Autocomplete(input);
+  function activatePlacesSearch() {
+    var input = document.getElementById("newconlocality");
+    var autocomplete = new google.maps.places.Autocomplete(input);
   }
 </script>

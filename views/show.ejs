@@ -10,11 +10,13 @@
     <div class="col-md-4">
       <div class="card">
         <div class="card-body">
-          <div class="card-header"><h4><a href="/plans" style="color: #ea1c2c;">Plans</a></h4></div>
+          <div class="card-header">
+            <h4><a href="/plans" style="color: #ea1c2c;">Plans</a></h4>
+          </div>
           <div class="list-group">
             <li class="list-group-item" style="border: none;">
               <% plans.forEach(function(plan){ %>
-                <a class="nav-link"  href="/plans/<%= plan._id %>"><%= plan.name %></a>
+              <a class="nav-link" href="/plans/<%= plan._id %>"><%= plan.name %></a>
               <% }) %>
             </li>
           </div>
@@ -22,35 +24,38 @@
       </div>
     </div>
     <div class="col-md-8">
-        <nav>
+      <!-- <nav>
           <div class="nav nav-tabs mb-5" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="onemonth" data-toggle="tab" href="#" role="tab" aria-controls="nav-home" aria-selected="true" >Subscribe for 1 month</a>
             <a class="nav-item nav-link" id="threemonth" data-toggle="tab" href="#" role="tab" aria-controls="nav-profile" aria-selected="false">Subscribe for 3months</a>
             <a class="nav-item nav-link" id="sixmonth" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false">Subscribe for 6months</a>
           </div>
-        </nav>
-        <div class="card">
-          <div class="card-header">
-            <h4><%= plan.name %></h4> 
-          </div>
-          <div class="card-body showbody">
-            <p class="card-text"><i class="fas fa-bolt icon "></i><%= plan.speed %></p>
-            <p class="card-text"><i class="fas fa-wifi icon "></i><%= plan.data %></p>
-            <p class="card-text"><i class="fas fa-tachometer-alt icon"></i><%= plan.postfup %></p>
-            <p class="card-text"></p><i class="fas fa-rupee-sign icon"></i><%= plan.rental %> per month</p>
-            <a href="/new-connection/new" class="btn btn-danger" style="color:white" id="buy1">Buy Now for Rs.<%= plan.rental %></a>
-            <a href="/new-connection/new" class="btn btn-danger displaymonth" style="color:white;" id="buy3" >Buy Now for Rs.<%= plan.rental*3 %></a>
-            <a href="/new-connection/new" class="btn btn-danger displaymonth" style="color:white;" id="buy6">Buy Now for Rs.<%= plan.rental*6 %></a>
-          </div>
+        </nav> -->
+      <div class="card">
+        <div class="card-header">
+          <h4><%= plan.name %></h4>
         </div>
-    </div>
+        <div class="card-body showbody">
+          <p class="card-text"><i class="fas fa-bolt icon "></i><%= plan.speed %></p>
+          <p class="card-text"><i class="fas fa-wifi icon "></i><%= plan.data %></p>
+          <p class="card-text"><i class="fas fa-tachometer-alt icon"></i><%= plan.postfup %></p>
+          <p class="card-text"></p><i class="fas fa-rupee-sign icon"></i><%= plan.rental %> per month</p>
+          <a href="/new-connection/new" class="btn btn-danger" style="color:white" id="buy1">Buy Now for
+            Rs.<%= plan.rental %></a>
+          <a href="/new-connection/new" class="btn btn-danger displaymonth" style="color:white;" id="buy3">Buy Now for
+            Rs.<%= plan.rental*3 %></a>
+          <a href="/new-connection/new" class="btn btn-danger displaymonth" style="color:white;" id="buy6">Buy Now for
+            Rs.<%= plan.rental*6 %></a>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 
 
-    
 
-  
-  
+
+
+
 
 <%- include('partials/footer'); -%>

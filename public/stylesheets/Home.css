@@ -4,6 +4,9 @@
 	box-sizing: border-box;
 	outline: none;
 }
+.navbar{
+	padding:2rem;
+}
 
 .Bband {
 	color: red;

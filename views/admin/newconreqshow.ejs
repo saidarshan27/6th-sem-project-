@@ -6,76 +6,77 @@
 <hr id="hr">
 
 <div class="container">
-    <div class="row">
-		<div class="col-md-3 mt-5">
-			<div class="list-group">
-				<li class="list-group-item active" id="personalinfo"> Personal Info </li>
+  <div class="row">
+    <div class="col-md-3 mt-5">
+      <div class="list-group">
+        <li class="list-group-item active" id="personalinfo"> Personal Info </li>
       </div>
-            <div id="map"></div>
+      <div id="map"></div>
+    </div>
+    <div class="col-md-9 inputs">
+      <form action="/user/<%= newcon.author.id %>?_method=PUT" method="POST" style="width:50rem;height:70vh">
+        <div class="form-group">
+          <label><strong>Name</strong></label>
+          <input class="form-control" type="text" value="<%= newcon.name %>" name="name">
         </div>
-        <div class="col-md-9 inputs">
-            <form action="/user/<%= newcon.author.id %>?_method=PUT" method="POST"  style="width:50rem;height:70vh" > 
-                <div class="form-group">
-                    <label><strong>Name</strong></label>
-                    <input  class="form-control" type="text"  value="<%= newcon.name %>" name="name">
-                </div>
-                <div class="form-group">
-                    <label><strong>Phone</strong></label>
-                    <input class="form-control" type="text"  value="<%= newcon.phone %>" name="phone">
-                </div>
-                <div class="form-group">
-                     <label><strong>Plan</strong></label>
-                      <input class="form-control" type="text"  value="<%= newcon.plan %>" name="plan">
-                </div>
-                <div class="form-group">
-                    <label><strong>Address</strong></label>
-                    <input class="form-control" type="text" value="<%= newcon.address %>" name="address">
-                </div>
-                <div class="form-group">
-                  <label><strong>Locality</strong></label>
-                  <input class="form-control" type="text"  value="<%= newcon.locality %>" name="locality">
-              </div>
-                <div>
-                    <label><strong>E-mail address</strong></label>
-                    <input class="form-control" type="text"  value="<%= newcon.email %>" name="email">
-                </div> 
-                <input class="form-control d-none" type="text"  value="<%= newcon.lat %>" name="lat">
-                <input class="form-control d-none" type="text"  value="<%= newcon.lng %>" name="lng">
-                <div class="AceeptDeclineBTN">
-                    <a href="" class="btn btn-outline-danger mr-2" >Decline</a>
-                    <button class="btn btn-outline-success" >Accept</button>
-                </div>
-                </form>
+        <div class="form-group">
+          <label><strong>Phone</strong></label>
+          <input class="form-control" type="text" value="<%= newcon.phone %>" name="phone">
         </div>
-</div>
+        <div class="form-group">
+          <label><strong>Plan</strong></label>
+          <input class="form-control" type="text" value="<%= newcon.plan %>" name="plan">
+        </div>
+        <div class="form-group">
+          <label><strong>Address</strong></label>
+          <input class="form-control" type="text" value="<%= newcon.address %>" name="address">
+        </div>
+        <div class="form-group">
+          <label><strong>Locality</strong></label>
+          <input class="form-control" type="text" value="<%= newcon.locality %>" name="locality">
+        </div>
+        <div>
+          <label><strong>E-mail address</strong></label>
+          <input class="form-control" type="text" value="<%= newcon.email %>" name="email">
+        </div>
+        <input class="form-control d-none" type="text" value="<%= newcon.lat %>" name="lat">
+        <input class="form-control d-none" type="text" value="<%= newcon.lng %>" name="lng">
+        <div class="AceeptDeclineBTN">
+          <a href="/admin/deleteNewConReq/<%=newcon._id%>" class="btn btn-outline-danger mr-2">Decline</a>
+          <button class="btn btn-outline-success">Accept</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 <script>
-    function initMap() {
-      var latstring = "<%= newcon.lat %>"
-      var lngstring = "<%= newcon.lng %>";
-      var lat=parseFloat(latstring);
-      var lng=parseFloat(lngstring);
-      var center = {lat: lat, lng: lng };
-      var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 16,
-          center: center,
-          scrollwheel: false
-      });
-      var contentString = `
+  function initMap() {
+    var latstring = "<%= newcon.lat %>"
+    var lngstring = "<%= newcon.lng %>";
+    var lat = parseFloat(latstring);
+    var lng = parseFloat(lngstring);
+    var center = { lat: lat, lng: lng };
+    var map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 16,
+      center: center,
+      scrollwheel: false
+    });
+    var contentString = `
         <strong><%= newcon.name %><br/>
         <%= newcon.address%></strong>
       `
-      var infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
-      var marker = new google.maps.Marker({
-          position: center,
-          map: map
-      });
-      marker.addListener('click', function() {
-        infowindow.open(map, marker);
-      });
-    }
-  </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD27OCfERJWk0dd1ziqQ05mu0eHdvuickI&callback=initMap"></script>
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    var marker = new google.maps.Marker({
+      position: center,
+      map: map
+    });
+    marker.addListener('click', function () {
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD27OCfERJWk0dd1ziqQ05mu0eHdvuickI&callback=initMap"></script>
 <%- include("../partials/footer.ejs"); %>
