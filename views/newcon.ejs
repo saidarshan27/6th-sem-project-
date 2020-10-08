@@ -24,7 +24,7 @@
         <option value="ABP Blaze">ABP Blaze</option>
         <option value="ABP Swift">ABP Swift</option>
         <option value="ABP Rapid Plus">ABP Rapid Plus</option>
-        <option value="ABP Storm<">ABP Storm</option>
+        <option value="ABP Storm">ABP Storm</option>
         <option value="ABP Lighting">ABP Lighting</option>
       </select>
     </div>
@@ -89,8 +89,6 @@
   </div>
 </div>
 
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD27OCfERJWk0dd1ziqQ05mu0eHdvuickI&libraries=places&callback=activatePlacesSearch"></script>
 <%- include("partials/footer.ejs"); %>
 
 <script>
@@ -105,3 +103,6 @@
     var autocomplete = new google.maps.places.Autocomplete(input);
   }
 </script>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD27OCfERJWk0dd1ziqQ05mu0eHdvuickI&libraries=places&callback=activatePlacesSearch"></script>
