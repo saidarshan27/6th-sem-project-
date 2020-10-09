@@ -426,8 +426,9 @@ $('.ticketuserinfo').click(function() {
 	$('.adminticketform').hide('slow');
 	$('.personalsupportinfo').show('slow');
 	const url = $('.adminticketform').attr('url');
+	console.log(url);
 	if (count === 0) {
-		$.get(url, function(data) {
+		$.get(url, function(data){
 			console.log(data);
 			$('.realticket').append(`
       <div class="personalsupportinfo">
