@@ -147,9 +147,9 @@
 </div>
 
 <script type="text/javascript">
-  var data = <% - JSON.stringify(parseFloat(currentUser.data.total)) %>
-  var plan = <% - JSON.stringify(currentUser.plan) %>
-  var used = <% - JSON.stringify(parseFloat(currentUser.data.used)) %>
+  var data = <%- JSON.stringify(parseFloat(currentUser.data.total)) %>
+  var plan = <%- JSON.stringify(currentUser.plan) %>
+  var used = <%- JSON.stringify(parseFloat(currentUser.data.used)) %>
   var rem = parseFloat(data - used);
 </script>
 
