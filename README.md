@@ -1,8 +1,5 @@
 # Broadband Management Portal
 
-# Live
-https://sixth-abp.herokuapp.com/home
-
 ## _An application used to manage broadband connections, built with HTML, CSS, and Javascript._
 Simple broadband portal for managing connections both as a user
 and admin.Users can logon to apply for a new connection,manage
